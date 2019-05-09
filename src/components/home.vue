@@ -7,7 +7,7 @@
         <img :class="['R_logo', {R_logo_top: flag}]" src="../assets/R_logo.svg">
         <div :class="['hello', {hello_bottom: flag}]">
           <div>{{language[i]}}</div>
-          <div class="hello_bottom_text">点击以访问 EsunR-Blog</div>
+          <div class="hello_bottom_text">点击以访问 {{$common.BLOG_NAME}}</div>
         </div>
       </div>
     </div>

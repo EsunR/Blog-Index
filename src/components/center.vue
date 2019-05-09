@@ -21,7 +21,7 @@
             <div class="subtitle">{{item.subtitle}}</div>
           </div>
           <div class="right">
-            <img :src="item.icon">
+            <img :src="item.icon == '' ? 'http://img.cdn.esunr.xyz/Aquarium.png' : item.icon">
           </div>
         </a>
       </div>
@@ -44,29 +44,44 @@ export default {
     },
     getPages() {
       let sortId = this.sortData[this.sortIndex].sortId;
-      this.axios
-        .get("/getPages?sortId=" + sortId)
-        .then(res => {
-          if (res.data.code == 1) {
-            this.pagesData = res.data.data;
+      if (this.$common.SERVE) {
+        this.axios
+          .get("/getPages?sortId=" + sortId)
+          .then(res => {
+            if (res.data.code == 1) {
+              this.pagesData = res.data.data;
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      } else {
+        this.pagesData = [];
+        for (let i in this.$common.PAGES_DATA) {
+          let item = this.$common.PAGES_DATA[i];
+          if (item.sortId == sortId) {
+            this.pagesData.push(item);
           }
-        })
-        .catch(err => {
-          console.log(err);
-        });
+        }
+      }
     },
     getSort(callback) {
-      this.axios
-        .get("/getSort")
-        .then(res => {
-          if (res.data.code == 1) {
-            this.sortData = res.data.data;
-            callback();
-          }
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      if (this.$common.SERVE) {
+        this.axios
+          .get("/getSort")
+          .then(res => {
+            if (res.data.code == 1) {
+              this.sortData = res.data.data;
+              callback();
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      } else {
+        this.sortData = this.$common.SORT_DATA;
+        callback();
+      }
     },
     changeSortIndex(index) {
       this.sortIndex = index;
@@ -101,7 +116,7 @@ export default {
       display: flex;
       .nav_item {
         margin-right: 15px;
-        font-size: 1rem;
+        font-size: .9rem;
         color: rgba(0, 0, 0, 0.6);
         cursor: pointer;
         transition: all 0.3s;
@@ -116,6 +131,9 @@ export default {
     }
     .close {
       font-size: 1.2rem;
+      position: relative;
+      top: -5px;
+      cursor: pointer;
     }
   }
   .main {
