@@ -83,9 +83,9 @@ const SLOGAN = [
 另外在编译前，你需要将 `/src/assets/logo.svg` 替换为你的网站LOGO，注意格式必须为 `svg` 文件，同时将 `/oublic/favicon.ico` 替换为你网站的 favicon。
 
 ### 2. 添加服务器支持（可选）
-如果想要使用线上服务器来加载数据，请将 `SERVE` 设置为 `true` 并将 `HOST` 填写你的服务器接口地址，同时需要按照 [API.md](./API.md) 规范来编写后台API接口，以及 [DataBase.md](./DataBase.md) 来创建数据库。
+如果想要使用后台服务器来加加载和管理数据，请将 `SERVE` 设置为 `true` 并将 `HOST` 填写为你的服务器接口地址，这样前台页面就会使用Ajax来向你添加的服务器地址来请求数据。同时你需要按照 [API.md](./API.md) 规范来编写后台API接口，以及按照 [DataBase.md](./DataBase.md) 规范来创建数据库。
 
-连接后台后则无需填写 `common.js` 中的 `PAGES_DATA` 和 `SORT_DATA`。
+> 连接后台后则无需填写 `common.js` 中的 `PAGES_DATA` 和 `SORT_DATA` 数据。
 
 ### 3. 编译
 确保已安装 `npm` 以及 `vue-cli` 等工具，运行：
