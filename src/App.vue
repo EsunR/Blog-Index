@@ -26,6 +26,13 @@ body {
   margin: 0;
   padding: 0;
 }
+
+@media screen and (max-width: 900px) {
+  html {
+    font-size: 14px;
+  }
+}
 </style>
+
 
 

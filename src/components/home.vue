@@ -15,7 +15,10 @@
       style="cursor: pointer"
       @click="centerShow = !centerShow"
     >
-      <i class="mdi-chevron-up mdi"></i>
+      <transition name="fade">
+        <i v-if="!centerShow" class="mdi-chevron-up mdi"></i>
+        <i v-if="centerShow" class="mdi-chevron-down mdi"></i>
+      </transition>
     </div>
     <transition name="fade">
       <div class="shadow" v-show="centerShow"></div>
@@ -163,7 +166,7 @@ export default {
     transition: all 0.5s;
   }
   .img_shadow_show {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.5);
   }
   .wrapper_blur {
     filter: blur(1px);
@@ -191,15 +194,28 @@ export default {
     width: 100%;
     height: 100%;
     .center_inner {
-      width: 95%;
-      height: 80%;
+      width: 70%;
       position: absolute;
-      bottom: 1rem;
       overflow: hidden;
-      border-radius: 1rem;
+      border-radius: 0.5rem;
       left: 0;
       right: 0;
       margin: 0 auto;
+      bottom: 5%;
+      height: 70%;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  #home {
+    .center_wrapper {
+      .center_inner {
+        width: 100%;
+        bottom: 0px;
+        padding: 10px;
+        box-sizing: border-box;
+      }
     }
   }
 }

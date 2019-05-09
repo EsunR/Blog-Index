@@ -1,23 +1,82 @@
 <template>
   <div id="center" v-swipedown="hideCenter">
     <div class="top">
-      <div class="title">Play Ground</div>
+      <nav class="nav_wrap">
+        <div
+          :class="['nav_item', {active: sortData[sortIndex].sortId == item.sortId}]"
+          v-for="(item, index) in sortData"
+          :key="item.sortId"
+          @click="changeSortIndex(index)"
+        >{{item.title}}</div>
+      </nav>
       <div class="close">
         <i class="mdi mdi-close-box" @click="$emit('hide')"></i>
       </div>
     </div>
+    <transition-group tag="div" class="main row" name="list">
+      <div class="col page_item" v-for="item in pagesData" :key="item.pageId">
+        <a :href="item.url" class="page">
+          <div class="left">
+            <div class="title">{{item.title}}</div>
+            <div class="subtitle">{{item.subtitle}}</div>
+          </div>
+          <div class="right">
+            <img :src="item.icon">
+          </div>
+        </a>
+      </div>
+    </transition-group>
   </div>
 </template>
 
 <script>
 export default {
   data() {
-    return {};
+    return {
+      sortData: [],
+      sortIndex: 0,
+      pagesData: []
+    };
   },
   methods: {
     hideCenter() {
       this.$emit("hide");
+    },
+    getPages() {
+      let sortId = this.sortData[this.sortIndex].sortId;
+      this.axios
+        .get("/getPages?sortId=" + sortId)
+        .then(res => {
+          if (res.data.code == 1) {
+            this.pagesData = res.data.data;
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    getSort(callback) {
+      this.axios
+        .get("/getSort")
+        .then(res => {
+          if (res.data.code == 1) {
+            this.sortData = res.data.data;
+            callback();
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    changeSortIndex(index) {
+      this.sortIndex = index;
+      this.getPages();
     }
+  },
+  mounted() {
+    this.getSort(() => {
+      this.getPages();
+    });
   }
 };
 </script>
@@ -29,13 +88,104 @@ export default {
   display: block;
   box-sizing: border-box;
   padding: 1rem;
-  background-color: #f8f8f8;
+  background-color: rgb(241, 241, 241);
   color: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
   .top {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    font-size: 1.2rem;
+    padding: 0 0.5rem;
+    .nav_wrap {
+      display: flex;
+      .nav_item {
+        margin-right: 15px;
+        font-size: 1rem;
+        color: rgba(0, 0, 0, 0.6);
+        cursor: pointer;
+        transition: all 0.3s;
+        border-bottom: 2px solid rgba(0, 0, 0, 0);
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+      }
+      .active {
+        border-bottom: 2px solid rgba(0, 0, 0, 1);
+        color: rgba(0, 0, 0, 1);
+      }
+    }
   }
+  .main {
+    /* margin-top: 1rem !important; */
+    .page {
+      background-color: #fff;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      display: flex;
+      min-height: 4.5rem;
+      align-items: center;
+      cursor: pointer;
+      text-decoration: none;
+      &:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .left {
+        width: 80%;
+        margin-right: 10px;
+        .title {
+          font-size: 1rem;
+          color: rgba(0, 0, 0, 0.8);
+          font-weight: bold;
+        }
+        .subtitle {
+          margin-top: 0.5rem;
+          font-size: 0.8rem;
+          line-height: 1.5;
+          color: rgba(0, 0, 0, 0.6);
+        }
+      }
+      .right {
+        width: 20%;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+  .row {
+    margin: 0 -0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .col {
+    padding: 0.5rem;
+    box-sizing: border-box;
+    width: 25%;
+    transition: all 1s;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  #center {
+    .main {
+      .page {
+        align-items: inherit;
+        padding: 0.8rem;
+        .left {
+          width: 70%;
+        }
+      }
+    }
+    .col {
+      width: 50%;
+    }
+  }
+}
+
+.list-enter,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.list-leave-active {
+  position: absolute;
 }
 </style>
