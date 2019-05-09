@@ -1,5 +1,6 @@
 <template>
   <div id="home" @mousewheel="nextPage" v-swipeup="showCenter">
+    <a class="github mdi mdi-github-circle" href="https://github.com/EsunR/Blog-Index"></a>
     <div :class="[{wrapper_blur: centerShow}, 'wrapper', 'bg-blur']">
       <div :class="['img_shadow', {img_shadow_show: imgLoded}]"></div>
       <div class="inner" style="cursor: pointer" @click="goToBlog">
@@ -109,6 +110,16 @@ export default {
   justify-content: center;
   display: flex;
   overflow: hidden;
+  .github{
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+    font-size: 2rem;
+    z-index: 1;
+    cursor: pointer;
+  }
   .wrapper {
     background: url("http://api.dujin.org/bing/1366.php");
     overflow: hidden;
@@ -133,7 +144,7 @@ export default {
       }
       .hello {
         color: #ffffff;
-        width: 300px;
+        width: 18.75rem;
         text-align: center;
         position: absolute;
         transform: translate(-50%, -50%);
@@ -193,6 +204,7 @@ export default {
     position: absolute;
     width: 100%;
     height: 100%;
+    z-index: 2;
     .center_inner {
       width: 70%;
       position: absolute;

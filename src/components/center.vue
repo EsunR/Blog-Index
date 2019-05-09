@@ -91,9 +91,11 @@ export default {
   background-color: rgb(241, 241, 241);
   color: rgba(0, 0, 0, 0.8);
   border-radius: 10px;
+  position: relative;
   .top {
     display: flex;
     justify-content: space-between;
+    margin-top: 5px;
     padding: 0 0.5rem;
     .nav_wrap {
       display: flex;
@@ -111,6 +113,9 @@ export default {
         border-bottom: 2px solid rgba(0, 0, 0, 1);
         color: rgba(0, 0, 0, 1);
       }
+    }
+    .close {
+      font-size: 1.2rem;
     }
   }
   .main {
