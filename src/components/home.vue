@@ -1,16 +1,24 @@
 <template>
   <div id="home" @mousewheel="nextPage" v-swipeup="showCenter">
+    <!-- 遮罩：防止用户在动画播放期间点击屏幕 -->
+    <div class="mask_ban_touch" v-if="!flag" style="width: 100%; height: 100%; z-index: 999; position: absolute"></div>
+
+    <!-- github 徽标 -->
     <a class="github mdi mdi-github-circle" href="https://github.com/EsunR/Blog-Index"></a>
+
+    <!-- 中间LOGO部分 -->
     <div :class="[{wrapper_blur: centerShow}, 'wrapper', 'bg-blur']">
       <div :class="['img_shadow', {img_shadow_show: imgLoded}]"></div>
       <div class="inner" style="cursor: pointer" @click="goToBlog">
-        <img :class="['R_logo', {R_logo_top: flag}]" src="../assets/R_logo.svg">
+        <img :class="['R_logo', {R_logo_top: flag}]" src="../assets/logo.svg">
         <div :class="['hello', {hello_bottom: flag}]">
-          <div>{{language[i]}}</div>
+          <div>{{slogan[i]}}</div>
           <div class="hello_bottom_text">点击以访问 {{$common.BLOG_NAME}}</div>
         </div>
       </div>
     </div>
+
+    <!-- 上下滑动指示器 -->
     <div
       :class="['bottom', {bottom_show: flag}]"
       style="cursor: pointer"
@@ -21,6 +29,8 @@
         <i v-if="centerShow" class="mdi-chevron-down mdi"></i>
       </transition>
     </div>
+
+    <!-- 导航抽屉 -->
     <transition name="fade">
       <div class="shadow" v-show="centerShow"></div>
     </transition>
@@ -49,21 +59,11 @@ import center from "./center.vue";
 export default {
   data() {
     return {
-      flag: false,
-      language: [
-        "欢迎拜访",
-        "歡迎拜訪",
-        "Welcome, my friend!",
-        "訪問へようこそ",
-        "嗨，别来无恙",
-        "不忘初心，一生浪漫",
-        "最近还好吗？",
-        "流星，落花，萤火",
-        "马车越空，晃荡越响"
-      ],
-      i: randomNum(0, 8),
-      centerShow: false,
-      imgLoded: false
+      flag: false, // 动画是否播放完毕
+      slogan: [],
+      i: 0,
+      centerShow: false, // 导航抽屉显示状态
+      imgLoded: false // 背景图片加载状态
     };
   },
   components: {
@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     goToBlog() {
-      window.location.href = "https://www.esunr.xyz/blog/";
+      window.location.href = this.$common.BLOG_URL;
     },
     nextPage(e) {
       if (e.deltaY < 0) {
@@ -99,6 +99,8 @@ export default {
     img.onload = () => {
       this.imgLoded = true;
     };
+    this.slogan = this.$common.SLOGAN;
+    this.i = randomNum(0, this.slogan.length - 1);
   }
 };
 </script>
@@ -110,7 +112,7 @@ export default {
   justify-content: center;
   display: flex;
   overflow: hidden;
-  .github{
+  .github {
     display: block;
     position: absolute;
     top: 10px;
