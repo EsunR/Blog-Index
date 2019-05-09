@@ -2,17 +2,25 @@
 
 ## About | 关于
 
-这是一个基于 Vue 的通用网站导航页面，你可以将其放在个人网站的首页作为您博客的引导页面或者是您其他项目的引导页。兼容了多平台的显示效果（基于Flex布局），方便游客浏览您的个人网站。
-
-页面分为两部分，一个是全屏的展示页，一个是导航抽屉页，阅读下面的“使用方法”来为您的网站配置基本信息与导航信息。
-
-![](http://markdown.img.esunr.xyz/show.png)
-
 ![](https://img.shields.io/badge/Base-Vue2.2-brightgreen.svg)
 ![](https://img.shields.io/badge/Build-Vue--Cli3-orange.svg)
 ![](https://img.shields.io/badge/Installer-Npm/Yarn-red.svg)
 
-[点击查看网站示例](https://www.esunr.xyz)
+这是一个基于 Vue 的通用网站导航页面，你可以将其放在个人网站的首页作为您博客的引导页面或者是您其他项目的引导页。兼容了多平台的显示效果（基于Flex布局），方便游客浏览您的个人网站。
+
+页面分为两部分，一个是全屏的展示页，一个是导航抽屉页，阅读下面的“使用方法”来为您的网站配置基本信息与导航信息，[点击查看网站示例。](https://www.esunr.xyz)
+
+
+![](http://markdown.img.esunr.xyz/show.png)
+
+编译后文件大小：
+
+| File                                |    Size    |   Gzipped |
+| :---------------------------------- | :--------: | --------: |
+| dist\js\chunk-vendors.f05012da.js   | 132.81 KiB | 45.92 KiB |
+| dist\js\app.bca32cd8.js             | 10.11 KiB  |  4.00 KiB |
+| dist\css\chunk-vendors.788b09de.css | 154.83 KiB | 27.29 KiB |
+| dist\css\app.f7274e1c.css           |  6.21 KiB  |  1.40 KiB |
 
 ## How to use | 使用方法
 
