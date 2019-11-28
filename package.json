@@ -8,11 +8,14 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@mdi/font": "^4.6.95",
     "animate.css": "^3.7.0",
+    "axios": "^0.19.0",
     "core-js": "^2.6.5",
     "node-sass": "^4.12.0",
     "sass-loader": "^7.1.0",
     "vue": "^2.6.10",
+    "vue-axios": "^2.1.5",
     "vue-router": "^3.0.3",
     "vuex": "^3.0.1"
   },
