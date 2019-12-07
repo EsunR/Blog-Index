@@ -45,6 +45,10 @@ const SLOGAN = [
   "马车越空，晃荡越响"
 ]; // 在Logo下方显示的标题
 
+const GITHUB = "https://github.com/EsunR";
+
+const FOOTER_INFO = true;
+
 export default {
   SERVE,
   HOST,
@@ -52,6 +56,8 @@ export default {
   BLOG_NAME,
   SORT_DATA,
   PAGES_DATA,
-  SLOGAN
+  SLOGAN,
+  GITHUB,
+  FOOTER_INFO
 };
 </script>

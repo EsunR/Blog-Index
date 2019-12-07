@@ -21,11 +21,15 @@
             <div class="subtitle">{{item.subtitle}}</div>
           </div>
           <div class="right">
-            <img :src="item.icon == '' ? 'http://img.cdn.esunr.xyz/Aquarium.png' : item.icon">
+            <img :src="item.icon == '' ? 'http://img.cdn.esunr.xyz/Aquarium.png' : item.icon" />
           </div>
         </a>
       </div>
     </transition-group>
+    <div class="footer" v-if="$common.FOOTER_INFO">
+      <i class="mdi mdi-fountain-pen-tip"></i> Designed By
+      <a href="https://github.com/EsunR/Blog-Index">EsunR</a>
+    </div>
   </div>
 </template>
 
@@ -116,7 +120,7 @@ export default {
       display: flex;
       .nav_item {
         margin-right: 15px;
-        font-size: .9rem;
+        font-size: 0.9rem;
         color: rgba(0, 0, 0, 0.6);
         cursor: pointer;
         transition: all 0.3s;
@@ -183,6 +187,26 @@ export default {
     box-sizing: border-box;
     width: 25%;
     transition: all 1s;
+  }
+  .footer {
+    position: absolute;
+    bottom: 18px;
+    right: 20px;
+    font-size: 12px;
+    text-align: right;
+    color: #303030;
+    .mdi {
+      font-size: 18px;
+      position: relative;
+      top: 3px;
+      font-weight: bold;
+    }
+    a {
+      // color: #2196F3;
+      color: #303030;
+      text-decoration: none;
+      font-weight: bold;
+    }
   }
 }
 

@@ -1,16 +1,20 @@
 <template>
   <div id="home" @mousewheel="nextPage" v-swipeup="showCenter">
     <!-- 遮罩：防止用户在动画播放期间点击屏幕 -->
-    <div class="mask_ban_touch" v-if="!flag" style="width: 100%; height: 100%; z-index: 999; position: absolute"></div>
+    <div
+      class="mask_ban_touch"
+      v-if="!flag"
+      style="width: 100%; height: 100%; z-index: 999; position: absolute"
+    ></div>
 
     <!-- github 徽标 -->
-    <a class="github mdi mdi-github-circle" href="https://github.com/EsunR/Blog-Index"></a>
+    <a v-if="$common.GITHUB" class="github mdi mdi-github-circle" :href="$common.GITHUB"></a>
 
     <!-- 中间LOGO部分 -->
     <div :class="[{wrapper_blur: centerShow}, 'wrapper', 'bg-blur']">
       <div :class="['img_shadow', {img_shadow_show: imgLoded}]"></div>
       <div class="inner" style="cursor: pointer" @click="goToBlog">
-        <img :class="['R_logo', {R_logo_top: flag}]" src="../assets/logo.svg">
+        <img :class="['R_logo', {R_logo_top: flag}]" src="../assets/logo.svg" />
         <div :class="['hello', {hello_bottom: flag}]">
           <div>{{slogan[i]}}</div>
           <div class="hello_bottom_text">点击以访问 {{$common.BLOG_NAME}}</div>
@@ -24,10 +28,13 @@
       style="cursor: pointer"
       @click="centerShow = !centerShow"
     >
-      <transition name="fade">
-        <i v-if="!centerShow" class="mdi-chevron-up mdi"></i>
-        <i v-if="centerShow" class="mdi-chevron-down mdi"></i>
-      </transition>
+      <div class="bottom-icon">
+        <transition name="fade">
+          <i v-if="!centerShow" class="mdi-chevron-up mdi"></i>
+          <i v-if="centerShow" class="mdi-chevron-down mdi"></i>
+        </transition>
+      </div>
+      <div class="bottom-info">Slide UP</div>
     </div>
 
     <!-- 导航抽屉 -->
@@ -191,6 +198,12 @@ export default {
     bottom: 0%;
     opacity: 0;
     transition: all 1s;
+    text-align: center;
+    .bottom-info {
+      font-size: 1rem;
+      margin-top: 5px;
+      animation: float 4s infinite ease-in-out;
+    }
   }
   .bottom_show {
     bottom: 5%;
@@ -275,6 +288,18 @@ export default {
     width: 100%;
     height: 100%;
     border-radius: 0;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0)
+  }
+  50% {
+    transform: translateY(-10px)
+  }
+  100% {
+    transform: translateY(0)
   }
 }
 </style>

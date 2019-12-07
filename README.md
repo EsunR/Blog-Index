@@ -77,6 +77,10 @@ const SLOGAN = [
   "流星，落花，萤火",
   "马车越空，晃荡越响"
 ]; // 在Logo下方随机显示的标题
+
+const GITHUB = "https://github.com/EsunR"; // 右上角 Github 徽章的跳转地址，配置留空不显示
+
+const FOOTER_INFO = true; // 是否显抽屉右下角的 "Designed By EsunR"
 ```
 
 另外在编译前，你需要将 `/src/assets/logo.svg` 替换为你的网站LOGO，注意格式必须为 `svg` 文件，同时将 `/oublic/favicon.ico` 替换为你网站的 favicon。
