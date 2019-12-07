@@ -31,7 +31,7 @@
 
 ### 1. 配置信息
 
-在 `/src/common.vue` 存放了项目的基本配置信息，配置示例如下：
+在 `/src/config.vue` 存放了项目的基本配置信息，配置示例如下：
 
 ```js
 const SERVE = false; // 是否使用线上服务器
@@ -88,7 +88,7 @@ const FOOTER_INFO = true; // 是否显抽屉右下角的 "Designed By EsunR"
 ### 2. 添加服务器支持（可选）
 如果想要使用后台服务器来加加载和管理数据，请将 `SERVE` 设置为 `true` 并将 `HOST` 填写为你的服务器接口地址，这样前台页面就会使用Ajax来向你添加的服务器地址来请求数据。同时你需要按照 [API.md](./API.md) 规范来编写后台API接口，以及按照 [DataBase.md](./DataBase.md) 规范来创建数据库。
 
-> 连接后台后则无需填写 `common.js` 中的 `PAGES_DATA` 和 `SORT_DATA` 数据。
+> 连接后台后则无需填写 `config.js` 中的 `PAGES_DATA` 和 `SORT_DATA` 数据。
 
 ### 3. 编译
 确保已安装 `npm` 以及 `vue-cli` 等工具，运行：

@@ -6,11 +6,11 @@ import "../node_modules/@mdi/font/css/materialdesignicons.min.css"
 import "./assets/mobile-event"
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import common from './common.vue'
+import config from './config.js'
 
-Vue.prototype.$common = common;
+Vue.prototype.$config = config;
 Vue.use(VueAxios, axios);
-axios.defaults.baseURL = common.HOST;
+axios.defaults.baseURL = config.HOST;
 
 Vue.config.productionTip = false
 

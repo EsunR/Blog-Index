@@ -8,7 +8,7 @@
     ></div>
 
     <!-- github 徽标 -->
-    <a v-if="$common.GITHUB" class="github mdi mdi-github-circle" :href="$common.GITHUB"></a>
+    <a v-if="$config.GITHUB" class="github mdi mdi-github-circle" :href="$config.GITHUB"></a>
 
     <!-- 中间LOGO部分 -->
     <div :class="[{wrapper_blur: centerShow}, 'wrapper', 'bg-blur']">
@@ -17,7 +17,7 @@
         <img :class="['R_logo', {R_logo_top: flag}]" src="../assets/logo.svg" />
         <div :class="['hello', {hello_bottom: flag}]">
           <div>{{slogan[i]}}</div>
-          <div class="hello_bottom_text">点击以访问 {{$common.BLOG_NAME}}</div>
+          <div class="hello_bottom_text">点击以访问 {{$config.BLOG_NAME}}</div>
         </div>
       </div>
     </div>
@@ -78,7 +78,7 @@ export default {
   },
   methods: {
     goToBlog() {
-      window.location.href = this.$common.BLOG_URL;
+      window.location.href = this.$config.BLOG_URL;
     },
     nextPage(e) {
       if (e.deltaY < 0) {
@@ -106,7 +106,7 @@ export default {
     img.onload = () => {
       this.imgLoded = true;
     };
-    this.slogan = this.$common.SLOGAN;
+    this.slogan = this.$config.SLOGAN;
     this.i = randomNum(0, this.slogan.length - 1);
   }
 };

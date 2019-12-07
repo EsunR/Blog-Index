@@ -26,7 +26,7 @@
         </a>
       </div>
     </transition-group>
-    <div class="footer" v-if="$common.FOOTER_INFO">
+    <div class="footer" v-if="$config.FOOTER_INFO">
       <i class="mdi mdi-fountain-pen-tip"></i> Designed By
       <a href="https://github.com/EsunR/Blog-Index">EsunR</a>
     </div>
@@ -48,7 +48,7 @@ export default {
     },
     getPages() {
       let sortId = this.sortData[this.sortIndex].sortId;
-      if (this.$common.SERVE) {
+      if (this.$config.SERVE) {
         this.axios
           .get("/getPages?sortId=" + sortId)
           .then(res => {
@@ -61,8 +61,8 @@ export default {
           });
       } else {
         this.pagesData = [];
-        for (let i in this.$common.PAGES_DATA) {
-          let item = this.$common.PAGES_DATA[i];
+        for (let i in this.$config.PAGES_DATA) {
+          let item = this.$config.PAGES_DATA[i];
           if (item.sortId == sortId) {
             this.pagesData.push(item);
           }
@@ -70,7 +70,7 @@ export default {
       }
     },
     getSort(callback) {
-      if (this.$common.SERVE) {
+      if (this.$config.SERVE) {
         this.axios
           .get("/getSort")
           .then(res => {
@@ -83,7 +83,7 @@ export default {
             console.log(err);
           });
       } else {
-        this.sortData = this.$common.SORT_DATA;
+        this.sortData = this.$config.SORT_DATA;
         callback();
       }
     },

@@ -1,4 +1,3 @@
-<script type="text/javascript">
 // const HOST = "https://localhost:2333/api/esunrIndex";  // 测试API地址
 
 const SERVE = true; // 是否使用线上服务器
@@ -60,4 +59,3 @@ export default {
   GITHUB,
   FOOTER_INFO
 };
-</script>
