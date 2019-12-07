@@ -34,13 +34,17 @@
 在 `/src/config.js` 存放了项目的基本配置信息，配置示例如下：
 
 ```js
-const SERVE = false; // 是否使用线上服务器
+const SERVE = true; // 是否使用线上服务器
 
-const HOST = ""; // 线上服务器地址，如果不使用请留空
+const HOST = "https://esunr.xyz:8080/api/esunrIndex"; // 线上服务器地址，如果不使用请留空
 
 const BLOG_NAME = "EsunR-Blog"; // 个人网站名字
 
 const BLOG_URL = "https://www.esunr.xyz/blog/"; // 个人网站链接（请填写完整链接）
+
+const GITHUB = "https://github.com/EsunR"; // 右上角 Github 图标链接，留空不显示
+
+const BACKGROUND_IMG_URL = ""; // 背景图片url，留空默认为必应每日图片
 
 const SORT_DATA = [
   { sortId: 1, title: "示例分类1" },
@@ -76,11 +80,9 @@ const SLOGAN = [
   "最近还好吗？",
   "流星，落花，萤火",
   "马车越空，晃荡越响"
-]; // 在Logo下方随机显示的标题
+]; // 在Logo下方显示的标题
 
-const GITHUB = "https://github.com/EsunR"; // 右上角 Github 徽章的跳转地址，配置留空不显示
-
-const FOOTER_INFO = true; // 是否显抽屉右下角的 "Designed By EsunR"
+const FOOTER_INFO = true; // 是否显示抽屉右下角的文字信息
 ```
 
 另外在编译前，你需要将 `/src/assets/logo.svg` 替换为你的网站LOGO，注意格式必须为 `svg` 文件，同时将 `/oublic/favicon.ico` 替换为你网站的 favicon。

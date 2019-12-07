@@ -11,7 +11,10 @@
     <a v-if="$config.GITHUB" class="github mdi mdi-github-circle" :href="$config.GITHUB"></a>
 
     <!-- 中间LOGO部分 -->
-    <div :class="[{wrapper_blur: centerShow}, 'wrapper', 'bg-blur']">
+    <div
+      :style="{background: `url(${imgUrl})`}"
+      :class="[{wrapper_blur: centerShow}, 'wrapper', 'bg-blur']"
+    >
       <div :class="['img_shadow', {img_shadow_show: imgLoded}]"></div>
       <div class="inner" style="cursor: pointer" @click="goToBlog">
         <img :class="['R_logo', {R_logo_top: flag}]" src="../assets/logo.svg" />
@@ -70,7 +73,8 @@ export default {
       slogan: [],
       i: 0,
       centerShow: false, // 导航抽屉显示状态
-      imgLoded: false // 背景图片加载状态
+      imgLoded: false, // 背景图片加载状态
+      imgUrl: "http://api.dujin.org/bing/1366.php"
     };
   },
   components: {
@@ -101,8 +105,11 @@ export default {
     setTimeout(() => {
       this.flag = true;
     }, 1300);
+    // 图片懒加载
+    this.imgUrl =
+      this.$config.BACKGROUND_IMG_URL || "http://api.dujin.org/bing/1366.php";
     var img = new Image();
-    img.src = "http://api.dujin.org/bing/1366.php";
+    img.src = this.imgUrl;
     img.onload = () => {
       this.imgLoded = true;
     };
@@ -130,7 +137,7 @@ export default {
     cursor: pointer;
   }
   .wrapper {
-    background: url("http://api.dujin.org/bing/1366.php");
+    background-size: cover !important;
     overflow: hidden;
     align-items: center;
     justify-content: center;
@@ -293,13 +300,13 @@ export default {
 
 @keyframes float {
   0% {
-    transform: translateY(0)
+    transform: translateY(0);
   }
   50% {
-    transform: translateY(-10px)
+    transform: translateY(-10px);
   }
   100% {
-    transform: translateY(0)
+    transform: translateY(0);
   }
 }
 </style>
