@@ -8,12 +8,14 @@ const BLOG_URL = "https://blog.esunr.xyz"; // 个人网站链接（请填写完�
 
 const GITHUB = "https://github.com/EsunR"; // 右上角 Github 图标链接，留空不显示
 
-const BACKGROUND_IMG_URL = ""; // 背景图片url，留空默认为必应每日图片
+const BACKGROUND_IMG_URL = "https://www.esunr.xyz:8080/api/utils/bingPic"; // 背景图片url，留空默认为必应每日图片
 
 const SORT_DATA = [
   { sortId: 1, title: "示例分类1" },
   { sortId: 2, title: "示例分类2" }
 ]; // 网站分类列表，请按照API.md中'/getSort'接口中返回的data格式填写
+
+const RECORD_NUMBER = "豫ICP备18045315号"; // 网站备案号，留空不显示
 
 const PAGES_DATA = [
   {
@@ -58,5 +60,6 @@ export default {
   SLOGAN,
   GITHUB,
   FOOTER_INFO,
-  BACKGROUND_IMG_URL
+  BACKGROUND_IMG_URL,
+  RECORD_NUMBER
 };

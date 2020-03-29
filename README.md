@@ -12,15 +12,6 @@
 
 ![](http://markdown.img.esunr.xyz/show.png)
 
-编译后文件大小：
-
-| File                                |    Size    |   Gzipped |
-| :---------------------------------- | :--------: | --------: |
-| dist\js\chunk-vendors.f05012da.js   | 132.81 KiB | 45.92 KiB |
-| dist\js\app.bca32cd8.js             | 10.11 KiB  |  4.00 KiB |
-| dist\css\chunk-vendors.788b09de.css | 154.83 KiB | 27.29 KiB |
-| dist\css\app.f7274e1c.css           |  6.21 KiB  |  1.40 KiB |
-
 ## How to use | 使用方法
 
 本项目中，提供了两种使用方法：
@@ -50,6 +41,8 @@ const SORT_DATA = [
   { sortId: 1, title: "示例分类1" },
   { sortId: 2, title: "示例分类2" }
 ]; // 网站分类列表，请按照API.md中'/getSort'接口中返回的data格式填写
+
+const RECORD_NUMBER = ""; // 网站备案号，留空不显示
 
 const PAGES_DATA = [
   {
@@ -105,7 +98,13 @@ $ yarn build
 
 生成的文件将存放在 `/dist` 目录下，Enjoy!
 
+## Log | 更新日志
 
+2020.03.29:
 
-
-
+- 优化：移除了 yarn 安装方式
+- 优化：移除了 Vuex
+- 修复：替换了获取必应每日图片的 api
+- 新增：支持添加个人网站备案号
+- 新增：集成 Better-Scroll，使抽屉页面可以上下滑动
+- 变更：抽屉打开后，取消了下滑关闭抽屉的操作手势（因为会与抽屉的滑动操作产生）

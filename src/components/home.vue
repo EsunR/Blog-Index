@@ -1,5 +1,5 @@
 <template>
-  <div id="home" @mousewheel="nextPage" v-swipeup="showCenter">
+  <div id="home" @mousewheel="handleMouseWheel" v-swipeup="showCenter">
     <!-- 遮罩：防止用户在动画播放期间点击屏幕 -->
     <div
       class="mask_ban_touch"
@@ -8,26 +8,35 @@
     ></div>
 
     <!-- github 徽标 -->
-    <a v-if="$config.GITHUB" class="github mdi mdi-github-circle" :href="$config.GITHUB"></a>
+    <a
+      v-if="$config.GITHUB"
+      class="github mdi mdi-github-circle"
+      :href="$config.GITHUB"
+    ></a>
 
     <!-- 中间LOGO部分 -->
     <div
-      :style="{background: `url(${imgUrl})`}"
-      :class="[{wrapper_blur: centerShow}, 'wrapper', 'bg-blur']"
+      :style="{ background: `url(${imgUrl})` }"
+      :class="[{ wrapper_blur: centerShow }, 'wrapper', 'bg-blur']"
     >
-      <div :class="['img_shadow', {img_shadow_show: imgLoded}]"></div>
+      <div :class="['img_shadow', { img_shadow_show: imgLoded }]"></div>
       <div class="inner" style="cursor: pointer" @click="goToBlog">
-        <img :class="['R_logo', {R_logo_top: flag}]" src="../assets/logo.svg" />
-        <div :class="['hello', {hello_bottom: flag}]">
-          <div>{{slogan[i]}}</div>
-          <div class="hello_bottom_text">点击以访问 {{$config.BLOG_NAME}}</div>
+        <img
+          :class="['R_logo', { R_logo_top: flag }]"
+          src="../assets/logo.svg"
+        />
+        <div :class="['hello', { hello_bottom: flag }]">
+          <div>{{ slogan[i] }}</div>
+          <div class="hello_bottom_text">
+            点击以访问 {{ $config.BLOG_NAME }}
+          </div>
         </div>
       </div>
     </div>
 
     <!-- 上下滑动指示器 -->
     <div
-      :class="['bottom', {bottom_show: flag}]"
+      :class="['bottom', { bottom_show: flag }]"
       style="cursor: pointer"
       @click="centerShow = !centerShow"
     >
@@ -40,6 +49,15 @@
       <div class="bottom-info">Slide UP</div>
     </div>
 
+    <!-- 备案号 -->
+    <a
+      class="record_number"
+      :class="{ record_number_show: flag }"
+      href="http://beian.miit.gov.cn/"
+      v-if="recordNumber"
+      >{{ recordNumber }}</a
+    >
+
     <!-- 导航抽屉 -->
     <transition name="fade">
       <div class="shadow" v-show="centerShow"></div>
@@ -47,7 +65,7 @@
     <transition name="slide">
       <div v-show="centerShow" class="center_wrapper" @click="hideCenter">
         <div class="center_inner" @click="stopPropagation">
-          <center @hide="hideCenter"></center>
+          <center @hide="hideCenter" ref="center"></center>
         </div>
       </div>
     </transition>
@@ -67,28 +85,66 @@ function randomNum(minNum, maxNum) {
 }
 import center from "./center.vue";
 export default {
+  name: "home",
   data() {
+    this.startTime = new Date();
     return {
       flag: false, // 动画是否播放完毕
       slogan: [],
       i: 0,
       centerShow: false, // 导航抽屉显示状态
       imgLoded: false, // 背景图片加载状态
-      imgUrl: "http://api.dujin.org/bing/1366.php"
+      imgUrl: ""
     };
   },
   components: {
     center
   },
+  computed: {
+    recordNumber() {
+      return this.$config.RECORD_NUMBER;
+    }
+  },
   methods: {
     goToBlog() {
       window.location.href = this.$config.BLOG_URL;
     },
-    nextPage(e) {
+    _jieliu(callback, delay) {
+      let currentTime = new Date();
+      if (currentTime - this.startTime > delay) {
+        callback();
+        this.startTime = new Date();
+      }
+    },
+    handleMouseWheel(e) {
       if (e.deltaY < 0) {
-        this.centerShow = true;
+        // 如果鼠标滚轮向上滚动
+        if (!this.centerShow) {
+          this.centerShow = true;
+        } else {
+          this._jieliu(() => {
+            this.$refs.center.scroller.scrollBy(
+              0,
+              100,
+              500,
+              "cubic-bezier(0.23, 1, 0.32, 1)"
+            );
+          }, 500);
+        }
       } else {
-        this.centerShow = false;
+        // 如果鼠标滚轮向下滚动
+        if (!this.centerShow) {
+          return;
+        } else {
+          this._jieliu(() => {
+            this.$refs.center.scroller.scrollBy(
+              0,
+              -100,
+              500,
+              "cubic-bezier(0.23, 1, 0.32, 1)"
+            );
+          }, 500);
+        }
       }
     },
     showCenter() {
@@ -106,8 +162,7 @@ export default {
       this.flag = true;
     }, 1300);
     // 图片懒加载
-    this.imgUrl =
-      this.$config.BACKGROUND_IMG_URL || "http://api.dujin.org/bing/1366.php";
+    this.imgUrl = this.$config.BACKGROUND_IMG_URL;
     var img = new Image();
     img.src = this.imgUrl;
     img.onload = () => {
@@ -119,12 +174,13 @@ export default {
 };
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 #home {
   height: 100%;
   align-items: center;
   justify-content: center;
   display: flex;
+  flex-direction: column;
   overflow: hidden;
   .github {
     display: block;
@@ -213,7 +269,7 @@ export default {
     }
   }
   .bottom_show {
-    bottom: 5%;
+    bottom: 50px;
     opacity: 1;
   }
   .shadow {
@@ -238,6 +294,22 @@ export default {
       bottom: 5%;
       height: 70%;
     }
+  }
+  .record_number {
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 30px;
+    background: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    bottom: 0;
+    transform: translateY(30px);
+    transition: transform ease 1s;
+  }
+  .record_number_show {
+    transform: translateY(0px);
   }
 }
 
