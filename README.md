@@ -14,6 +14,18 @@
 
 ## How to use | 使用方法
 
+安装依赖：
+
+```shell
+npm install # 如果安装出错请使用cnpm安装
+```
+
+开发模式：
+
+```shell
+npm run serve
+```
+
 本项目中，提供了两种使用方法：
 
 一种是只需要将网站的相关信息按要求填入配置文件，之后再编译整个项目就可以生成一个适用于你的网站的静态导航页面；
@@ -86,14 +98,10 @@ const FOOTER_INFO = true; // 是否显示抽屉右下角的文字信息
 > 连接后台后则无需填写 `config.js` 中的 `PAGES_DATA` 和 `SORT_DATA` 数据。
 
 ### 3. 编译
-确保已安装 `npm` 以及 `vue-cli` 等工具，运行：
+确保已安装 `npm` 以及安装好了项目依赖之后运行：
 
 ```
 $ npm run build
-
-// 或者
-
-$ yarn build
 ```
 
 生成的文件将存放在 `/dist` 目录下，Enjoy!
