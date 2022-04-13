@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3323286 */
-  src: url('iconfont.woff2?t=1649760976405') format('woff2'),
-       url('iconfont.woff?t=1649760976405') format('woff'),
-       url('iconfont.ttf?t=1649760976405') format('truetype');
+  src: url("iconfont.woff2?t=1649760976405") format("woff2"),
+    url("iconfont.woff?t=1649760976405") format("woff"),
+    url("iconfont.ttf?t=1649760976405") format("truetype");
 }
 
 .iconfont {
@@ -20,4 +20,3 @@
 .icon-github:before {
   content: "\e673";
 }
-

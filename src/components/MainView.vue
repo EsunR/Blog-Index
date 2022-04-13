@@ -8,11 +8,7 @@
     ></div>
 
     <!-- github 徽标 -->
-    <a
-      v-if="$config.GITHUB"
-      class="github"
-      :href="$config.GITHUB"
-    >
+    <a v-if="$config.GITHUB" class="github" :href="$config.GITHUB">
       <Icon name="icon-github" size="2rem" />
     </a>
 

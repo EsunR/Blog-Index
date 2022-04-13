@@ -21,6 +21,6 @@ module.exports = {
   plugins: ["@typescript-eslint"],
   rules: {
     "@typescript-eslint/no-this-alias": "off",
-    "vue/multi-word-component-names": "off"
+    "vue/multi-word-component-names": "off",
   },
 };
