@@ -1,56 +1,29 @@
 {
-  "name": "esunr-index",
-  "version": "0.1.0",
-  "private": true,
+  "name": "esunr-index-v3",
+  "version": "0.0.0",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "serve": "vite preview",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
+    "format": "prettier .  --write"
   },
   "dependencies": {
-    "@mdi/font": "^4.6.95",
-    "animate.css": "^3.7.0",
-    "axios": "^0.19.0",
-    "better-scroll": "^1.15.2",
-    "core-js": "^2.6.5",
-    "vue": "^2.6.10",
-    "vue-axios": "^2.1.5",
-    "vue-router": "^3.0.3"
+    "vue": "^3.2.16"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.7.0",
-    "@vue/cli-plugin-eslint": "^3.7.0",
-    "@vue/cli-service": "^3.7.0",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
+    "@types/node": "^16.11.10",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "@vitejs/plugin-vue": "^1.9.3",
+    "eslint": "^8.3.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-vue": "^8.1.1",
+    "prettier": "^2.4.1",
     "sass": "^1.43.4",
-    "sass-loader": "10.1.1",
-    "vue-template-compiler": "^2.5.21"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {
-      "no-console": "off"
-    }
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions"
-  ]
+    "typescript": "^4.4.3",
+    "vite": "^2.6.4",
+    "vite-plugin-eslint": "^1.3.0",
+    "vue-tsc": "^0.3.0"
+  }
 }

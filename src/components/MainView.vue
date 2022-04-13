@@ -1,32 +1,34 @@
 <template>
-  <div id="home" @mousewheel="handleMouseWheel" v-swipeup="showCenter">
+  <div id="main_view">
     <!-- 遮罩：防止用户在动画播放期间点击屏幕 -->
     <div
+      v-if="!isTouchable"
       class="mask_ban_touch"
-      v-if="!flag"
       style="width: 100%; height: 100%; z-index: 999; position: absolute"
     ></div>
 
     <!-- github 徽标 -->
     <a
       v-if="$config.GITHUB"
-      class="github mdi mdi-github-circle"
+      class="github"
       :href="$config.GITHUB"
-    ></a>
+    >
+      <Icon name="icon-github" size="2rem" />
+    </a>
 
     <!-- 中间LOGO部分 -->
     <div
-      :style="{ background: `url(${imgUrl})` }"
-      :class="[{ wrapper_blur: centerShow }, 'wrapper', 'bg-blur']"
+      :style="{ background: `url(${bgUrl})` }"
+      :class="[{ wrapper_blur: drawerVisible }, 'wrapper', 'bg-blur']"
     >
-      <div :class="['img_shadow', { img_shadow_show: imgLoded }]"></div>
+      <div :class="['img_shadow', { img_shadow_show: bgLoaded }]"></div>
       <div class="inner" style="cursor: pointer" @click="goToBlog">
         <img
-          :class="['R_logo', { R_logo_top: flag }]"
+          :class="['R_logo', { R_logo_top: isTouchable }]"
           src="../assets/logo.svg"
         />
-        <div :class="['hello', { hello_bottom: flag }]">
-          <div>{{ slogan[i] }}</div>
+        <div :class="['hello', { hello_bottom: isTouchable }]">
+          <div>{{ slogan[randomNum(0, slogan.length - 1)] }}</div>
           <div class="hello_bottom_text">
             点击以访问 {{ $config.BLOG_NAME }}
           </div>
@@ -34,148 +36,115 @@
       </div>
     </div>
 
-    <!-- 上下滑动指示器 -->
-    <div
-      :class="['bottom', { bottom_show: flag }]"
+    <!-- 上下滑动指示器 暂未开放 -->
+    <!-- <div
+      :class="['bottom', { bottom_show: isTouchable }]"
       style="cursor: pointer"
-      @click="centerShow = !centerShow"
+      @click="drawerVisible = !drawerVisible"
     >
-      <div class="bottom-icon">
+      <div class="bottom_icon">
         <transition name="fade">
-          <i v-if="!centerShow" class="mdi-chevron-up mdi"></i>
-          <i v-if="centerShow" class="mdi-chevron-down mdi"></i>
+          <Icon
+            name="icon-arrow-up-bold"
+            :class="{ reverse: drawerVisible }"
+          ></Icon>
         </transition>
       </div>
-      <div class="bottom-info">Slide UP</div>
-    </div>
+      <div class="bottom_info">Slide UP</div>
+    </div> -->
 
     <!-- 备案号 -->
     <a
+      v-if="$config.RECORD_NUMBER"
       class="record_number"
-      :class="{ record_number_show: flag }"
+      :class="{ record_number_show: isTouchable }"
       href="http://beian.miit.gov.cn/"
-      v-if="recordNumber"
-      >{{ recordNumber }}</a
+      >{{ $config.RECORD_NUMBER }}</a
     >
 
     <!-- 导航抽屉 -->
     <transition name="fade">
-      <div class="shadow" v-show="centerShow"></div>
+      <div v-show="drawerVisible" class="shadow"></div>
     </transition>
     <transition name="slide">
-      <div v-show="centerShow" class="center_wrapper" @click="hideCenter">
-        <div class="center_inner" @click="stopPropagation">
-          <center @hide="hideCenter" ref="center"></center>
+      <div v-show="drawerVisible" class="center_wrapper" @click="hideDrawer">
+        <div class="center_inner" @click="(e) => e.stopPropagation()">
+          <!-- <center ref="center" @hide="hideDrawer"></center> -->
         </div>
       </div>
     </transition>
   </div>
 </template>
 
-<script>
-function randomNum(minNum, maxNum) {
-  switch (arguments.length) {
-    case 1:
-      return parseInt(Math.random() * minNum + 1, 10);
-    case 2:
-      return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
-    default:
-      return 0;
-  }
-}
-import center from "./center.vue";
-export default {
-  name: "home",
-  data() {
-    this.startTime = new Date();
+<script lang="ts">
+import GLOBAL_CONFIG from "@/config";
+import { randomNum } from "@/utils";
+import { defineComponent, onMounted, ref } from "vue";
+import Icon from "./Icon.vue";
+
+export default defineComponent({
+  name: "MainView",
+  components: { Icon },
+  setup() {
+    // 用户是否可进行点击交互
+    const isTouchable = ref<boolean>(false);
+    const bgUrl = ref<string>("");
+    const bgLoaded = ref<boolean>(false);
+    const slogan = ref<string[]>([]);
+    const drawerVisible = ref<boolean>(false);
+
+    /**
+     * 加载背景图片
+     */
+    function loadBackground() {
+      bgUrl.value = GLOBAL_CONFIG.BACKGROUND_IMG_URL;
+      var img = new Image();
+      img.src = bgUrl.value;
+      img.onload = () => {
+        bgLoaded.value = true;
+      };
+      slogan.value = GLOBAL_CONFIG.SLOGAN;
+    }
+
+    /**
+     * 隐藏 Drawer
+     */
+    function hideDrawer() {
+      drawerVisible.value = false;
+    }
+
+    /**
+     * 前往我的博客
+     */
+    function goToBlog() {
+      window.location.href = GLOBAL_CONFIG.BLOG_URL;
+    }
+
+    onMounted(() => {
+      setTimeout(() => {
+        isTouchable.value = true;
+      }, 1300);
+      loadBackground();
+    });
+
     return {
-      flag: false, // 动画是否播放完毕
-      slogan: [],
-      i: 0,
-      centerShow: false, // 导航抽屉显示状态
-      imgLoded: false, // 背景图片加载状态
-      imgUrl: ""
+      // data
+      isTouchable,
+      bgUrl,
+      bgLoaded,
+      slogan,
+      drawerVisible,
+      hideDrawer,
+      // methods
+      goToBlog,
+      randomNum,
     };
   },
-  components: {
-    center
-  },
-  computed: {
-    recordNumber() {
-      return this.$config.RECORD_NUMBER;
-    }
-  },
-  methods: {
-    goToBlog() {
-      window.location.href = this.$config.BLOG_URL;
-    },
-    _jieliu(callback, delay) {
-      let currentTime = new Date();
-      if (currentTime - this.startTime > delay) {
-        callback();
-        this.startTime = new Date();
-      }
-    },
-    handleMouseWheel(e) {
-      if (e.deltaY < 0) {
-        // 如果鼠标滚轮向上滚动
-        if (!this.centerShow) {
-          this.centerShow = true;
-        } else {
-          this._jieliu(() => {
-            this.$refs.center.scroller.scrollBy(
-              0,
-              100,
-              500,
-              "cubic-bezier(0.23, 1, 0.32, 1)"
-            );
-          }, 500);
-        }
-      } else {
-        // 如果鼠标滚轮向下滚动
-        if (!this.centerShow) {
-          return;
-        } else {
-          this._jieliu(() => {
-            this.$refs.center.scroller.scrollBy(
-              0,
-              -100,
-              500,
-              "cubic-bezier(0.23, 1, 0.32, 1)"
-            );
-          }, 500);
-        }
-      }
-    },
-    showCenter() {
-      this.centerShow = true;
-    },
-    hideCenter() {
-      this.centerShow = false;
-    },
-    stopPropagation(e) {
-      e.stopPropagation();
-    }
-  },
-  mounted() {
-    setTimeout(() => {
-      this.flag = true;
-    }, 1300);
-    // 图片懒加载
-    this.imgUrl = this.$config.BACKGROUND_IMG_URL;
-    var img = new Image();
-    img.src = this.imgUrl;
-    img.onload = () => {
-      this.imgLoded = true;
-    };
-    this.slogan = this.$config.SLOGAN;
-    this.i = randomNum(0, this.slogan.length - 1);
-  }
-};
+});
 </script>
 
 <style lang="scss" scoped>
-#home {
+#main_view {
   height: 100%;
   align-items: center;
   justify-content: center;
@@ -188,9 +157,9 @@ export default {
     top: 10px;
     right: 10px;
     color: white;
-    font-size: 2rem;
     z-index: 1;
     cursor: pointer;
+    text-decoration: none;
   }
   .wrapper {
     background-size: cover !important;
@@ -262,7 +231,12 @@ export default {
     opacity: 0;
     transition: all 1s;
     text-align: center;
-    .bottom-info {
+    .bottom_icon {
+      .reverse {
+        transform: rotate(180deg);
+      }
+    }
+    .bottom_info {
       font-size: 1rem;
       margin-top: 5px;
       animation: float 4s infinite ease-in-out;
@@ -314,7 +288,7 @@ export default {
 }
 
 @media screen and (max-width: 900px) {
-  #home {
+  #main_view {
     .center_wrapper {
       .center_inner {
         width: 100%;

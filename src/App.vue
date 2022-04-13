@@ -1,16 +1,20 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
-  </div>
+  <MainView />
 </template>
 
-<script>
-export default {
-  data() {
+<script lang="ts">
+import { defineComponent } from "@vue/runtime-core";
+import MainView from "@/components/MainView.vue";
+
+export default defineComponent({
+  name: "App",
+  components: {
+    MainView,
+  },
+  setup() {
     return {};
   },
-  methods: {}
-};
+});
 </script>
 
 <style lang="scss">
@@ -33,6 +37,3 @@ body {
   }
 }
 </style>
-
-
-
