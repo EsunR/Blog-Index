@@ -1,12 +1,8 @@
-# EsunR-Blog 通用网站导航
+# Blog-Index 通用网站导航
 
-本项目正在使用 Vue3 进行重构，并尝试接入更多的新功能，切入 dev 分支可以查看当前的新代码进度 ~ 感谢 Starred
+### 本项目正在使用 Vue3 进行重构，并尝试接入更多的新功能，切入 dev 分支可以查看当前的新代码进度 ~ 感谢 Starred
 
 ~~本项目是学习过程中的产物，没想到会有这么多人的喜欢与支持，由于代码老旧，不会再考虑后期的更新了。~~
-
-但是，本项目仍有 Vue3 + Typescript 版本的开发计划，我会对其进行重构并优化代码结构，同时会在未来会加入 SSR 或预渲染的实现方案，完成后会将新的项目链接更新至本项目，敬请期待。
-
-—— 2021.11.17 挖坑
 
 ## About | 关于
 
@@ -55,7 +51,7 @@ const BLOG_URL = "https://www.esunr.xyz/blog/"; // 个人网站链接（请填�
 
 const GITHUB = "https://github.com/EsunR"; // 右上角 Github 图标链接，留空不显示
 
-const BACKGROUND_IMG_URL = ""; // 背景图片url，留空默认为必应每日图片
+const BACKGROUND_IMG_URL = ""; // 背景图片url，默认为纯色背景
 
 const SORT_DATA = [
   { sortId: 1, title: "示例分类1" },
@@ -114,7 +110,11 @@ $ npm run build
 
 生成的文件将存放在 `/dist` 目录下，Enjoy!
 
-## Log | 更新日志
+## Release log | 更新日志
+
+2022.04.13:
+
+- 修复：降低 sass-loader 版本，让项目整体可运行
 
 2020.06.20:
 
