@@ -99,7 +99,7 @@ export default defineComponent({
       img.onload = () => {
         bgLoaded.value = true;
       };
-      slogan.value = GLOBAL_CONFIG.SLOGAN.split("/");
+      slogan.value = GLOBAL_CONFIG.SLOGAN;
     }
 
     /**

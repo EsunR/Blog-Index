@@ -1,13 +1,12 @@
 import vue from "@vitejs/plugin-vue";
 import path from "path";
-import { defineConfig, loadEnv } from "vite";
+import { defineConfig } from "vite";
 import eslintPlugin from "vite-plugin-eslint";
 import { createHtmlPlugin } from "vite-plugin-html";
+import GLOBAL_CONFIG from "./src/config";
 
 // https://vitejs.dev/config/
-export default ({ mode }) => {
-  const env = loadEnv(mode, process.cwd());
-
+export default () => {
   return defineConfig({
     plugins: [
       vue(),
@@ -15,9 +14,9 @@ export default ({ mode }) => {
       createHtmlPlugin({
         inject: {
           data: {
-            title: env.VITE_HTML_TITLE,
-            keywords: env.VITE_HTML_KEYWORDS,
-            description: env.VITE_HTML_DESCRIPTION,
+            title: GLOBAL_CONFIG.HTML_META.title,
+            keywords: GLOBAL_CONFIG.HTML_META.keywords,
+            description: GLOBAL_CONFIG.HTML_META.description,
           },
         },
       }),
