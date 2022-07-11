@@ -2,7 +2,7 @@ const SERVE = false; // 是否使用线上服务器
 
 const HOST = "https://esunr.xyz:8080/api/esunrIndex"; // 线上服务器地址，如果不使用请留空
 
-const BLOG_NAME = "EsunR-Blog"; // 个人网站名字
+const BLOG_NAME = "我的博客"; // 个人网站名字
 
 const BLOG_URL = "https://blog.esunr.xyz"; // 个人网站链接（请填写完整链接）
 
@@ -15,7 +15,7 @@ const SORT_DATA = [
   { sortId: 2, title: "示例分类2" }
 ]; // 网站分类列表，请按照API.md中'/getSort'接口中返回的data格式填写
 
-const RECORD_NUMBER = "豫ICP备18045315号"; // 网站备案号，留空不显示
+const RECORD_NUMBER = ""; // 网站备案号，留空不显示
 
 const PAGES_DATA = [
   {
