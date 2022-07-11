@@ -58,6 +58,10 @@ $ yarn build
 
 生成的文件将存放在 `/dist` 目录下，Enjoy!
 
-### 4. 使用 Parcel 进行部署
+### 4. 自动化部署方案
 
-[《使用 Vercel 全自动部署个人网站》](https://blog.esunr.xyz/2022/07/0cce6064286a.html)
+点击按钮一键部署到 Vercel：
+
+[![](https://vercel.com/button)](https://vercel.com/new/clone?s=https%3A%2F%2Fgithub.com%2FEsunR%2FBlog-Index)
+
+参考文章：[《使用 Vercel 全自动部署个人网站》](https://blog.esunr.xyz/2022/07/0cce6064286a.html)
