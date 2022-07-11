@@ -8,7 +8,7 @@
     ></div>
 
     <!-- github 徽标 -->
-    <a v-if="$config.GITHUB" class="github" :href="$config.GITHUB">
+    <a v-if="$config.GITHUB_URL" class="github" :href="$config.GITHUB_URL">
       <Icon name="icon-github" size="2rem" />
     </a>
 
@@ -51,11 +51,11 @@
 
     <!-- 备案号 -->
     <a
-      v-if="$config.RECORD_NUMBER"
-      class="record_number"
-      :class="{ record_number_show: isTouchable }"
+      v-if="$config.ICP_CODE"
+      class="ICP_CODE"
+      :class="{ ICP_show: isTouchable }"
       href="http://beian.miit.gov.cn/"
-      >{{ $config.RECORD_NUMBER }}</a
+      >{{ $config.ICP_CODE }}</a
     >
 
     <!-- 导航抽屉 -->
@@ -99,7 +99,7 @@ export default defineComponent({
       img.onload = () => {
         bgLoaded.value = true;
       };
-      slogan.value = GLOBAL_CONFIG.SLOGAN;
+      slogan.value = GLOBAL_CONFIG.SLOGAN.split("/");
     }
 
     /**
@@ -265,7 +265,7 @@ export default defineComponent({
       height: 70%;
     }
   }
-  .record_number {
+  .ICP_CODE {
     width: 100%;
     text-align: center;
     color: #fff;
@@ -278,7 +278,7 @@ export default defineComponent({
     transform: translateY(30px);
     transition: transform ease 1s;
   }
-  .record_number_show {
+  .ICP_show {
     transform: translateY(0px);
   }
 }

@@ -7,16 +7,21 @@
     "serve": "vite preview",
     "lint": "eslint --ext .js,.vue,.ts --ignore-path .gitignore --fix src",
     "format": "prettier .  --write",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "cz": "cz"
   },
+  "license": "MIT",
   "dependencies": {
     "vue": "^3.2.16"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
     "@types/node": "^16.11.10",
     "@typescript-eslint/eslint-plugin": "^5.12.0",
     "@typescript-eslint/parser": "^5.12.0",
     "@vitejs/plugin-vue": "^1.9.3",
+    "commitizen": "^4.2.4",
     "eslint": "^8.3.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-vue": "^8.1.1",
@@ -30,7 +35,12 @@
     "vue-tsc": "^0.3.0"
   },
   "lint-staged": {
-    "*.{js,vue,ts}": "eslint --cache --fix",
-    "*.--write": "prettier --write"
+    "src/**/*.{js,vue,ts}": "eslint --cache --fix",
+    "src/**/*": "prettier --write"
+  },
+"config": {
+  "commitizen": {
+    "path": "cz-conventional-changelog"
   }
+}
 }

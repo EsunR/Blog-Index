@@ -11,9 +11,6 @@ export default defineComponent({
   components: {
     MainView,
   },
-  setup() {
-    return {};
-  },
 });
 </script>
 
