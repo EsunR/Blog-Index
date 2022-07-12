@@ -80,7 +80,7 @@ const GLOBAL_CONFIG = {
    * 网站分类列表
    */
   PAGES_DATA,
-  HTML_META: {
+  HTML_HEAD: {
     title: "My Blog Index",
     keywords: "Blog, Index, Index Page",
     description: "This is my personal blog index page.",

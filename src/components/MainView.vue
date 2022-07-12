@@ -15,7 +15,7 @@
     <!-- 中间LOGO部分 -->
     <div
       :style="{ background: `url(${bgUrl})` }"
-      :class="[{ wrapper_blur: drawerVisible }, 'wrapper', 'bg-blur']"
+      :class="[{ content_wrapper_blur: drawerVisible }, 'content_wrapper']"
     >
       <div :class="['img_shadow', { img_shadow_show: bgLoaded }]"></div>
       <div class="inner" style="cursor: pointer" @click="goToBlog">
@@ -52,7 +52,7 @@
     <!-- 备案号 -->
     <a
       v-if="$config.ICP_CODE"
-      class="ICP_CODE"
+      class="icp_code"
       :class="{ ICP_show: isTouchable }"
       href="http://beian.miit.gov.cn/"
       >{{ $config.ICP_CODE }}</a
@@ -142,9 +142,9 @@ export default defineComponent({
 <style lang="scss" scoped>
 #main_view {
   height: 100%;
+  display: flex;
   align-items: center;
   justify-content: center;
-  display: flex;
   flex-direction: column;
   overflow: hidden;
   .github {
@@ -157,8 +157,9 @@ export default defineComponent({
     cursor: pointer;
     text-decoration: none;
   }
-  .wrapper {
+  .content_wrapper {
     background-size: cover !important;
+    background-position: center !important;
     overflow: hidden;
     align-items: center;
     justify-content: center;
@@ -207,16 +208,17 @@ export default defineComponent({
     width: 100%;
     height: 100%;
     position: absolute;
-    left: 0;
-    top: 0;
     background-color: #fda085;
     overflow: hidden;
-    transition: all 0.5s;
+    transition: background-color 0.5s;
+    border-radius: 100%;
+    animation: shadowEnter 1.2s;
+    animation-fill-mode: forwards;
   }
   .img_shadow_show {
     background-color: rgba(0, 0, 0, 0.5);
   }
-  .wrapper_blur {
+  .content_wrapper_blur {
     filter: blur(1px);
   }
   .bottom {
@@ -265,7 +267,7 @@ export default defineComponent({
       height: 70%;
     }
   }
-  .ICP_CODE {
+  .icp_code {
     width: 100%;
     text-align: center;
     color: #fff;
@@ -334,6 +336,28 @@ export default defineComponent({
   }
   100% {
     transform: rotate(360deg);
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+}
+
+@keyframes shadowEnter {
+  0% {
+    opacity: 0;
+    width: 0rem;
+    height: 0rem;
+  }
+  20% {
+    opacity: 1;
+    width: 15rem;
+    height: 15rem;
+  }
+  80% {
+    width: 15rem;
+    height: 15rem;
+  }
+  100% {
     width: 100%;
     height: 100%;
     border-radius: 0;

@@ -1,9 +1,12 @@
-import { createApp } from "vue";
+// import { createApp } from "vue";
+import { ViteSSG } from "vite-ssg/single-page";
 import App from "./App.vue";
 import GLOBAL_CONFIG from "./config";
 import "@/assets/css/index.scss";
 
-const app = createApp(App);
-app.config.globalProperties.$config = GLOBAL_CONFIG;
+export const createApp = ViteSSG(App, ({ app }) => {
+  app.config.globalProperties.$config = GLOBAL_CONFIG;
+});
 
-app.mount("#app");
+// app.config.globalProperties.$config = GLOBAL_CONFIG;
+// app.mount("#app");
