@@ -7,6 +7,3 @@ import "@/assets/css/index.scss";
 export const createApp = ViteSSG(App, ({ app }) => {
   app.config.globalProperties.$config = GLOBAL_CONFIG;
 });
-
-// app.config.globalProperties.$config = GLOBAL_CONFIG;
-// app.mount("#app");
