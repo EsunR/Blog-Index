@@ -32,6 +32,7 @@
     "sass": "^1.43.4",
     "typescript": "^4.4.3",
     "vite": "^2.6.4",
+    "vite-plugin-compression": "^0.5.1",
     "vite-plugin-eslint": "^1.3.0",
     "vite-ssg": "^0.20.2",
     "vue-router": "^4.1.2",
