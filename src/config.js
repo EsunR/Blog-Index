@@ -1,6 +1,6 @@
 const SERVE = false; // 是否使用线上服务器
 
-const HOST = "https://esunr.xyz:8080/api/esunrIndex"; // 线上服务器地址，如果不使用请留空
+const HOST = ""; // 线上服务器地址，如果不使用请留空
 
 const BLOG_NAME = "我的博客"; // 个人网站名字
 
@@ -23,7 +23,7 @@ const PAGES_DATA = [
     sortId: 1,
     title: "主标题",
     subtitle: "副标题",
-    url: "http://www.YourWebPage.com/",
+    url: "http://www.your-web-page.com/",
     icon: ""
   },
   {
@@ -31,7 +31,7 @@ const PAGES_DATA = [
     sortId: 2,
     title: "主标题",
     subtitle: "副标题",
-    url: "http://www.YourWebPage.xyz/",
+    url: "http://www.your-web-page.xyz/",
     icon: ""
   }
 ]; // 网站分类列表，请按照API.md中'/getPages'接口中返回的data格式填写
