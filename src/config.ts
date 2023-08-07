@@ -56,7 +56,7 @@ const GLOBAL_CONFIG = {
   /**
    * ICP 备案号，留空不显示
    */
-  ICP: "粤ICP备2021062311号",
+  ICP: "萌ICP证000001号",
   FOOTER_INFO: true,
   /**
    * 网站欢迎标语

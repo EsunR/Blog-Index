@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { useHead } from "@vueuse/head";
+import { useHead } from "@unhead/vue";
 import GLOBAL_CONFIG from "./config";
 import { onMounted, ref } from "vue";
 import BanTouchMask from "@/components/BanTouchMask.vue";
 import CenterLogo from "@/components/CenterLogo.vue";
 import GithubBadge from "@/components/GithubBadge.vue";
 import ICP from "@/components/ICP.vue";
+import AppDrawer from "./components/AppDrawer.vue";
 
 defineOptions({
   name: "App",
@@ -45,6 +46,9 @@ useHead({
 
     <!-- 中间LOGO部分 -->
     <CenterLogo :drawer-visible="drawerVisible" :touchable="animationEnd" />
+
+    <!-- 应用抽屉 -->
+    <AppDrawer />
 
     <!-- 备案号 -->
     <ICP :visible="animationEnd" />

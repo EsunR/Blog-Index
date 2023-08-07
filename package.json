@@ -20,6 +20,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@unhead/vue": "^1.2.2",
     "vue": "^3.3.4"
   },
   "devDependencies": {
@@ -29,7 +30,6 @@
     "@typescript-eslint/eslint-plugin": "^5.12.0",
     "@typescript-eslint/parser": "^5.12.0",
     "@vitejs/plugin-vue": "^4.2.3",
-    "@vueuse/head": "^1.1.26",
     "commitizen": "^4.2.4",
     "eslint": "^8.3.0",
     "eslint-config-prettier": "^8.3.0",
