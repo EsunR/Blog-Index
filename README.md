@@ -8,7 +8,7 @@
 
 > 本项目正在尝试使用 Vue3 进行重构，并尝试接入更多的新功能，切入 dev 分支可以查看当前的新代码进度 ~ 感谢 Starred
 
-![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=blog-index) [稳定版预览地址(master branch)](https://blog-index-dev.esunr.xyz/)
+![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=blog-index) [稳定版预览地址(master branch)](https://blog-index.esunr.xyz/)
 
 ![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=blog-index-git-dev-esunr) [开发版预览地址(dev branch)](https://blog-index-dev.esunr.xyz/)
 
