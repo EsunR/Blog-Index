@@ -56,12 +56,12 @@ const GLOBAL_CONFIG = {
   /**
    * ICP 备案号，留空不显示
    */
-  ICP_CODE: "",
+  ICP: "粤ICP备2021062311号",
   FOOTER_INFO: true,
   /**
    * 网站欢迎标语
    */
-  SLOGAN: [
+  SLOGANS: [
     "欢迎拜访",
     "歡迎拜訪",
     "Welcome, my friend!",
@@ -80,7 +80,7 @@ const GLOBAL_CONFIG = {
    * 网站分类列表
    */
   PAGES_DATA,
-  HTML_HEAD: {
+  TKD: {
     title: "My Blog Index",
     keywords: "Blog, Index, Index Page",
     description: "This is my personal blog index page.",

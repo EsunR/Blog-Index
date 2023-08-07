@@ -20,7 +20,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "vue": "^3.2.16"
+    "vue": "^3.3.4"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
@@ -33,11 +33,11 @@
     "commitizen": "^4.2.4",
     "eslint": "^8.3.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-vue": "^8.1.1",
+    "eslint-plugin-vue": "^9.16.1",
     "husky": "^7.0.4",
     "lint-staged": ">=10",
     "prettier": "^2.4.1",
-    "sass": "^1.43.4",
+    "sass": "^1.64.2",
     "typescript": "^5.1.6",
     "vite": "^4.4.8",
     "vite-plugin-compression": "^0.5.1",

@@ -1,54 +1,63 @@
-<template>
-  <MainView />
-</template>
-
-<script lang="ts">
-import { defineComponent } from "@vue/runtime-core";
-import MainView from "@/components/MainView.vue";
+<script setup lang="ts">
 import { useHead } from "@vueuse/head";
 import GLOBAL_CONFIG from "./config";
+import { onMounted, ref } from "vue";
+import BanTouchMask from "@/components/BanTouchMask.vue";
+import CenterLogo from "@/components/CenterLogo.vue";
+import GithubBadge from "@/components/GithubBadge.vue";
+import ICP from "@/components/ICP.vue";
 
-export default defineComponent({
+defineOptions({
   name: "App",
-  components: {
-    MainView,
-  },
-  setup() {
-    // set html head
-    useHead({
-      title: GLOBAL_CONFIG.HTML_HEAD.title,
-      meta: [
-        {
-          name: "description",
-          content: GLOBAL_CONFIG.HTML_HEAD.description,
-        },
-        {
-          name: "keywords",
-          content: GLOBAL_CONFIG.HTML_HEAD.keywords,
-        },
-      ],
-    });
-  },
+});
+
+const animationEnd = ref<boolean>(false);
+const drawerVisible = ref<boolean>(false);
+
+onMounted(() => {
+  setTimeout(() => {
+    animationEnd.value = true;
+  }, 1300);
+});
+
+useHead({
+  title: GLOBAL_CONFIG.TKD.title,
+  meta: [
+    {
+      name: "description",
+      content: GLOBAL_CONFIG.TKD.description,
+    },
+    {
+      name: "keywords",
+      content: GLOBAL_CONFIG.TKD.keywords,
+    },
+  ],
 });
 </script>
 
-<style lang="scss">
-#app {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-}
-html,
-body {
-  min-height: 100%;
-  margin: 0;
-  padding: 0;
-}
+<template>
+  <div id="main-view">
+    <!-- 遮罩：防止用户在动画播放期间点击屏幕 -->
+    <BanTouchMask :touchable="animationEnd" />
 
-@media screen and (max-width: 900px) {
-  html {
-    font-size: 14px;
-  }
+    <!-- github 徽标 -->
+    <GithubBadge />
+
+    <!-- 中间LOGO部分 -->
+    <CenterLogo :drawer-visible="drawerVisible" :touchable="animationEnd" />
+
+    <!-- 备案号 -->
+    <ICP :visible="animationEnd" />
+  </div>
+</template>
+
+<style lang="scss" scoped>
+#main-view {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 </style>

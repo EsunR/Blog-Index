@@ -22,5 +22,6 @@ module.exports = {
   rules: {
     "@typescript-eslint/no-this-alias": "off",
     "vue/multi-word-component-names": "off",
+    "vue/no-setup-props-destructure": "off",
   },
 };
