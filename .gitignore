@@ -130,3 +130,4 @@ dist
 
 .DS_Store
 .vercel
+.vite-ssg-temp

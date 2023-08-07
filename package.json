@@ -1,9 +1,17 @@
 {
   "name": "esunr-index-v3",
   "version": "0.0.0",
+  "packageManager": "yarn@1.22.19",
+  "volta": {
+    "node": "18.17.0",
+    "yarn": "1.22.19"
+  },
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite-ssg build",
+    "build": "vite-ssg build",
     "serve": "vite preview",
     "lint": "eslint --ext .js,.vue,.ts --ignore-path .gitignore --fix src",
     "format": "prettier .  --write",
@@ -20,8 +28,8 @@
     "@types/node": "^16.11.10",
     "@typescript-eslint/eslint-plugin": "^5.12.0",
     "@typescript-eslint/parser": "^5.12.0",
-    "@vitejs/plugin-vue": "^1.9.3",
-    "@vueuse/head": "^0.7.6",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "@vueuse/head": "^1.1.26",
     "commitizen": "^4.2.4",
     "eslint": "^8.3.0",
     "eslint-config-prettier": "^8.3.0",
@@ -30,13 +38,11 @@
     "lint-staged": ">=10",
     "prettier": "^2.4.1",
     "sass": "^1.43.4",
-    "typescript": "^4.4.3",
-    "vite": "^2.6.4",
+    "typescript": "^5.1.6",
+    "vite": "^4.4.8",
     "vite-plugin-compression": "^0.5.1",
-    "vite-plugin-eslint": "^1.3.0",
-    "vite-ssg": "^0.20.2",
-    "vue-router": "^4.1.2",
-    "vue-tsc": "^0.3.0"
+    "vite-plugin-eslint": "^1.8.1",
+    "vite-ssg": "^0.23.1"
   },
   "lint-staged": {
     "src/**/*.{js,vue,ts}": "eslint --cache --fix",
