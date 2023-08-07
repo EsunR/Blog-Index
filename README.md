@@ -72,4 +72,10 @@ $ yarn build
 
 [![](https://vercel.com/button)](https://vercel.com/new/clone?s=https%3A%2F%2Fgithub.com%2FEsunR%2FBlog-Index)
 
-参考文章：[《使用 Vercel 全自动部署个人网站》](https://blog.esunr.xyz/2022/07/0cce6064286a.html)
+部署参考教程：[《使用 Vercel 全自动部署个人网站》](https://blog.esunr.xyz/2022/07/0cce6064286a.html)
+
+注意：
+
+- Vercel 部署时日志中出现 `Error: Node.js version 16.x has reached End-of-Life.` 请忽略；
+- 如果出现 Vercel 无法部署的情况，请在 Vercel 的项目设置中，将 Node.js 版本设置为 16.x；
+- 如果 Vercel 分配的域名无法访问，需要自己在项目 `Settings - Domains` 中绑定自己的域名，如果仍无法访问，请在绑定域名时使用 `cname-china.vercel-dns.com`。
