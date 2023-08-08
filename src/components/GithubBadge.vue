@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import Icon from "@/components/basic/Icon.vue";
+import { GithubFilled } from "@ant-design/icons-vue";
 
 defineOptions({
   name: "GithubBadge",
@@ -8,7 +8,7 @@ defineOptions({
 
 <template>
   <a v-if="$config.GITHUB_URL" class="github-badge" :href="$config.GITHUB_URL">
-    <Icon name="icon-github" size="2rem" />
+    <GithubFilled :style="{ fontSize: '2rem' }" />
   </a>
 </template>
 

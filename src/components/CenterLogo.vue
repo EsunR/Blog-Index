@@ -12,6 +12,10 @@ defineProps<{
   touchable: boolean;
 }>();
 
+const emit = defineEmits<{
+  backgroundLoaded: [];
+}>();
+
 const bgLoaded = ref<boolean>(false);
 const slogan = ref<string>("");
 
@@ -23,6 +27,7 @@ function loadBackground() {
   img.src = GLOBAL_CONFIG.BACKGROUND_IMG_URL;
   img.addEventListener("load", () => {
     bgLoaded.value = true;
+    emit("backgroundLoaded");
   });
 }
 
@@ -72,7 +77,7 @@ onMounted(() => {
   animation-fill-mode: forwards;
   transition: all 0.8s;
   &.is-blur {
-    filter: blur(1px);
+    filter: blur(5px);
   }
   .img-shadow {
     content: "";
@@ -116,7 +121,7 @@ onMounted(() => {
       opacity: 1;
       top: 3.5rem;
       .hello_bottom_text {
-        font-size: 1rem;
+        font-size: var(--regular-font-size);
         margin-top: 0.5rem;
         padding-top: 0.5rem;
         border-top: 1px solid #fff;

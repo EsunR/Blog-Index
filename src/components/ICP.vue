@@ -13,7 +13,8 @@ defineProps<{
     v-if="$config.ICP"
     class="icp"
     :class="{ hide: !visible }"
-    href="http://beian.miit.gov.cn/"
+    :href="$config.ICP_URL"
+    target="_blank"
     >{{ $config.ICP }}</a
   >
 </template>
@@ -24,7 +25,7 @@ defineProps<{
   text-align: center;
   color: #fff;
   text-decoration: none;
-  font-size: 12px;
+  font-size: var(--small-font-size);
   line-height: 30px;
   background: rgba(0, 0, 0, 0.4);
   position: fixed;

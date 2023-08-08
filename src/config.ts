@@ -1,37 +1,28 @@
-interface ISortDataItem {
-  sortId: number;
-  title: string;
-}
-
-interface IPageDataItem {
-  pageId: number;
-  sortId: number;
-  title: string;
-  subtitle: string;
-  url: string;
-  icon: string;
-}
-
-const SORT_DATA: ISortDataItem[] = [
-  { sortId: 1, title: "示例分类1" },
-  { sortId: 2, title: "示例分类2" },
+const WEBSITE_SORTS: WebsiteSort[] = [
+  { id: 1, title: "示例分类1" },
+  { id: 2, title: "示例分类2" },
 ];
 
-const PAGES_DATA: IPageDataItem[] = [
+const WEBSITE_ITEMS: WebsiteItem[] = [
   {
-    pageId: 1,
     sortId: 1,
     title: "主标题",
-    subtitle: "副标题",
-    url: "http://www.YourWebPage.com/",
+    description: "网站描述",
+    url: "http://www.your-web-page.com/",
     icon: "",
   },
   {
-    pageId: 2,
+    sortId: 1,
+    title: "主标题",
+    description: "网站描述",
+    url: "http://www.your-web-page.com/",
+    icon: "",
+  },
+  {
     sortId: 2,
     title: "主标题",
-    subtitle: "副标题",
-    url: "http://www.YourWebPage.xyz/",
+    description: "网站描述",
+    url: "http://www.your-web-page.xyz/",
     icon: "",
   },
 ];
@@ -56,7 +47,8 @@ const GLOBAL_CONFIG = {
   /**
    * ICP 备案号，留空不显示
    */
-  ICP: "萌ICP证000001号",
+  ICP: "京ICP证000001号",
+  ICP_URL: "https://beian.miit.gov.cn/",
   FOOTER_INFO: true,
   /**
    * 网站欢迎标语
@@ -75,11 +67,11 @@ const GLOBAL_CONFIG = {
   /**
    * 网站分类列表
    */
-  SORT_DATA,
+  WEBSITE_SORTS,
   /**
    * 网站分类列表
    */
-  PAGES_DATA,
+  WEBSITE_ITEMS,
   TKD: {
     title: "My Blog Index",
     keywords: "Blog, Index, Index Page",

@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { useHead } from "@unhead/vue";
 import GLOBAL_CONFIG from "./config";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import BanTouchMask from "@/components/BanTouchMask.vue";
 import CenterLogo from "@/components/CenterLogo.vue";
 import GithubBadge from "@/components/GithubBadge.vue";
 import ICP from "@/components/ICP.vue";
-import AppDrawer from "./components/AppDrawer.vue";
+import WebsiteDrawer from "./components/WebsiteDrawer.vue";
 
 defineOptions({
   name: "App",
@@ -14,11 +14,18 @@ defineOptions({
 
 const animationEnd = ref<boolean>(false);
 const drawerVisible = ref<boolean>(false);
+const backgroundLoaded = ref<boolean>(false);
 
 onMounted(() => {
   setTimeout(() => {
     animationEnd.value = true;
   }, 1300);
+});
+
+watch([backgroundLoaded, animationEnd], () => {
+  if (backgroundLoaded.value && animationEnd.value) {
+    document.body.style.backgroundColor = "rgba(0,0,0,0.8)";
+  }
 });
 
 useHead({
@@ -45,10 +52,14 @@ useHead({
     <GithubBadge />
 
     <!-- 中间LOGO部分 -->
-    <CenterLogo :drawer-visible="drawerVisible" :touchable="animationEnd" />
+    <CenterLogo
+      :drawer-visible="drawerVisible"
+      :touchable="animationEnd"
+      @background-loaded="backgroundLoaded = true"
+    />
 
     <!-- 应用抽屉 -->
-    <AppDrawer />
+    <WebsiteDrawer v-model="drawerVisible" />
 
     <!-- 备案号 -->
     <ICP :visible="animationEnd" />
@@ -63,5 +74,6 @@ useHead({
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  position: relative;
 }
 </style>

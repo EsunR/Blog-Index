@@ -11,6 +11,8 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "lib": ["esnext", "dom"],
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
     "baseUrl": "./",
     "paths": {
       "@/*": ["./src/*"]

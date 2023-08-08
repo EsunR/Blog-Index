@@ -2,6 +2,27 @@ html,
 body {
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  color: #303030;
+
+  // variables
+  --regular-text-color: #303030;
+  --secondary-text-color: #757575;
+
+  --regular-font-size: 1rem;
+  --small-font-size: 0.8rem;
+
+  --regular-gap: 1rem;
+  --small-gap: 0.8rem;
+  --mini-gap: 0.6rem;
+  --super-mini-gap: 0.4rem;
+
+  --regular-border-radius: 0.5rem;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 @media screen and (max-width: 900px) {
@@ -11,4 +32,3 @@ body {
 }
 
 @import url("./animate.scss");
-@import url("../font/iconfont.css");
