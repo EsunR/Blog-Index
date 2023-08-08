@@ -7,9 +7,9 @@ const WEBSITE_ITEMS: WebsiteItem[] = [
   {
     sortId: 1,
     title: "主标题",
-    description: "网站描述",
     url: "http://www.your-web-page.com/",
     icon: "",
+    color: "#0171CD",
   },
   {
     sortId: 1,

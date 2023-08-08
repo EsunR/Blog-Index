@@ -6,7 +6,8 @@ interface WebsiteSort {
 interface WebsiteItem {
   sortId: number;
   title: string;
-  description: string;
+  description?: string;
   url: string;
   icon: string;
+  color?: string;
 }

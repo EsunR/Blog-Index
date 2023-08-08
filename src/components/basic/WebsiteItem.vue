@@ -9,16 +9,23 @@ defineProps<{
 </script>
 
 <template>
-  <div class="website-item">
+  <a :href="item.url" target="_blank" class="website-item">
     <div class="website-item__info">
       <div class="title">{{ item.title }}</div>
-      <div class="description">{{ item.description }}</div>
+      <div class="description">
+        {{ item.description || `网站链接: ${item.url}` }}
+      </div>
     </div>
-    <div class="website-item__logo">
+    <div
+      class="website-item__logo"
+      :style="{
+        backgroundColor: item.color,
+      }"
+    >
       <img v-if="item.icon" :alt="item.title" />
       <span v-else>{{ item.title.slice(0, 1) }}</span>
     </div>
-  </div>
+  </a>
 </template>
 
 <style lang="scss" scoped>
@@ -34,6 +41,21 @@ $text-line-height: 1.4rem;
   min-height: calc(
     $text-line-height + var(--super-mini-gap) + $text-line-height * 2
   );
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid #ffffff;
+
+  @media (any-hover: hover) {
+    &:hover {
+      border: 1px solid var(--secondary-text-color);
+    }
+  }
+
+  &:active {
+    border: 1px solid var(--secondary-text-color);
+    box-shadow: inset 0px 0px 0.3rem 0px rgba(0, 0, 0, 0.3);
+    transform: scale(0.99);
+  }
 
   &__info {
     flex: 1;
@@ -57,6 +79,7 @@ $text-line-height: 1.4rem;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       line-height: $text-line-height;
+      height: $text-line-height * 2;
     }
   }
 
