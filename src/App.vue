@@ -7,6 +7,7 @@ import CenterLogo from "@/components/CenterLogo.vue";
 import GithubBadge from "@/components/GithubBadge.vue";
 import ICP from "@/components/ICP.vue";
 import WebsiteDrawer from "./components/WebsiteDrawer.vue";
+import useMobileVhCssVar from "@/hooks/useMobileVhCssVar";
 
 defineOptions({
   name: "App",
@@ -15,6 +16,8 @@ defineOptions({
 const animationEnd = ref<boolean>(false);
 const drawerVisible = ref<boolean>(false);
 const backgroundLoaded = ref<boolean>(false);
+
+useMobileVhCssVar();
 
 onMounted(() => {
   setTimeout(() => {
@@ -68,7 +71,7 @@ useHead({
 
 <style lang="scss" scoped>
 #main-view {
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   display: flex;
   flex-direction: column;
   align-items: center;
