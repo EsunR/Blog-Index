@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, ref, toRefs, watch } from "vue";
+import { computed, onMounted, ref, toRefs, watch } from "vue";
 import Drawer from "@/components/basic/Drawer.vue";
 import { UpOutlined } from "@ant-design/icons-vue";
 import Tabs from "@/components/basic/Tabs/index.vue";
@@ -9,6 +9,8 @@ import { TabPanelProps } from "./basic/Tabs/types";
 import WebsiteItem from "./basic/WebsiteItem.vue";
 import useMouseWheel from "@/hooks/useMouseWheel";
 import useTouch from "@/hooks/useTouch";
+
+type WebsiteConfig = WebsiteSort & { sites: WebsiteItem[] };
 
 defineOptions({
   name: "WebsiteDrawer",
@@ -27,6 +29,15 @@ const activeTabs = ref<TabPanelProps["name"]>("");
 const websiteSorts = ref<WebsiteSort[]>([]);
 const websiteItems = ref<WebsiteItem[]>([]);
 const disableUserActionInput = ref(false);
+
+const websiteConfig = computed<WebsiteConfig[]>(() => {
+  return websiteSorts.value.map((sort) => {
+    return {
+      ...sort,
+      sites: websiteItems.value.filter((item) => item.sortId === sort.id) || [],
+    };
+  });
+});
 
 useMouseWheel({
   disable: disableUserActionInput,
@@ -67,6 +78,7 @@ onMounted(() => {
 
 <template>
   <div class="website-drawer">
+    <!-- Drawer 打开开关 -->
     <div class="drawer-handler" @click="onDrawerHandlerClick">
       <span class="drawer-handler__icon">
         <up-outlined />
@@ -74,6 +86,7 @@ onMounted(() => {
       <span class="drawer-handler__text slide-up">Slide Up</span>
       <span class="drawer-handler__text wheel-up">Wheel Up</span>
     </div>
+    <!-- Drawer -->
     <Drawer
       :model-value="modelValue"
       class="website-drawer__drawer"
@@ -81,18 +94,22 @@ onMounted(() => {
     >
       <Tabs v-model="activeTabs">
         <TabPanel
-          v-for="websiteSort in websiteSorts"
-          :key="websiteSort.id"
-          :name="websiteSort.id"
-          :label="websiteSort.title"
+          v-for="config in websiteConfig"
+          :key="config.id"
+          :name="config.id"
+          :label="config.title"
+          :class="{
+            'empty-panel': !config.sites.length,
+          }"
         >
-          <WebsiteItem
-            v-for="(website, index) in $config.WEBSITE_ITEMS.filter(
-              (item) => item.sortId === websiteSort.id
-            )"
-            :key="index"
-            :item="website"
-          />
+          <template v-if="config.sites.length">
+            <WebsiteItem
+              v-for="(website, index) in config.sites"
+              :key="index"
+              :item="website"
+            />
+          </template>
+          <div v-else>😥 这里什么都没有</div>
         </TabPanel>
       </Tabs>
     </Drawer>
@@ -138,6 +155,9 @@ onMounted(() => {
 <style lang="scss">
 .website-drawer__drawer {
   .drawer__content {
+    .tabs__header {
+      width: calc(100% - 1.2rem);
+    }
     .tabs__content {
       height: 60vh;
     }
@@ -151,6 +171,13 @@ onMounted(() => {
 
     @media screen and (min-width: 768px) {
       grid-template-columns: repeat(4, 1fr);
+    }
+
+    &.empty-panel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--secondary-text-color);
     }
   }
 }

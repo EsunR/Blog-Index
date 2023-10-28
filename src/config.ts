@@ -1,6 +1,12 @@
 const WEBSITE_SORTS: WebsiteSort[] = [
   { id: 1, title: "示例分类1" },
   { id: 2, title: "示例分类2" },
+  { id: 3, title: "示例分类3" },
+  { id: 4, title: "示例分类4" },
+  { id: 5, title: "示例分类5" },
+  { id: 6, title: "示例分类6" },
+  { id: 7, title: "示例分类7" },
+  { id: 8, title: "示例分类8" },
 ];
 
 const WEBSITE_ITEMS: WebsiteItem[] = [

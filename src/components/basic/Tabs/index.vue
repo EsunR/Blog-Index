@@ -1,5 +1,15 @@
 <script lang="ts" setup>
-import { VNode, computed, getCurrentInstance, ref, toRefs, watch } from "vue";
+import {
+  VNode,
+  computed,
+  getCurrentInstance,
+  nextTick,
+  onMounted,
+  onUnmounted,
+  ref,
+  toRefs,
+  watch,
+} from "vue";
 import { TabPanelProps } from "./types";
 
 defineOptions({
@@ -18,17 +28,7 @@ const emits = defineEmits<{
 
 const instance = getCurrentInstance();
 const children = ref<VNode[]>([]);
-
-watch(
-  () => instance?.slots.default?.(),
-  (newVal) => {
-    const parentNode = newVal?.[0];
-    children.value = (parentNode?.children as VNode[]) || [];
-  },
-  {
-    immediate: true,
-  }
-);
+const tabsHeaderRef = ref<HTMLDivElement>();
 
 const tabs = computed(() =>
   children.value
@@ -49,11 +49,77 @@ const activeIndex = computed(() => {
 function onTabLabelClick(name: TabPanelProps["name"]) {
   emits("update:modelValue", name);
 }
+
+function onTabsHeaderScroll() {
+  const target = tabsHeaderRef.value;
+  if (!target) {
+    return;
+  }
+  const { scrollLeft, scrollWidth, clientWidth } = target;
+  // 按照当前的滚动状态为元素添加 mask
+  const needMask = scrollLeft > 0 || scrollWidth > clientWidth;
+  if (needMask) {
+    if (scrollLeft === 0) {
+      target.classList.add("tabs__header__mask-right");
+      target.classList.remove(
+        "tabs__header__mask-left",
+        "tabs__header__mask-both"
+      );
+    } else if (
+      scrollLeft + clientWidth >= scrollWidth - 4 &&
+      scrollLeft + clientWidth <= scrollWidth + 4
+    ) {
+      target.classList.add("tabs__header__mask-left");
+      target.classList.remove(
+        "tabs__header__mask-right",
+        "tabs__header__mask-both"
+      );
+    } else {
+      target.classList.add("tabs__header__mask-both");
+      target.classList.remove(
+        "tabs__header__mask-left",
+        "tabs__header__mask-right"
+      );
+    }
+  } else {
+    target.classList.remove(
+      "tabs__header__mask-left",
+      "tabs__header__mask-right",
+      "tabs__header__mask-both"
+    );
+  }
+}
+
+watch(
+  () => instance?.slots.default?.(),
+  (newVal) => {
+    const parentNode = newVal?.[0];
+    children.value = (parentNode?.children as VNode[]) || [];
+  },
+  {
+    immediate: true,
+  }
+);
+
+onMounted(() => {
+  if (tabsHeaderRef.value) {
+    tabsHeaderRef.value.addEventListener("scroll", onTabsHeaderScroll);
+    nextTick(() => {
+      onTabsHeaderScroll();
+    });
+  }
+});
+
+onUnmounted(() => {
+  if (tabsHeaderRef.value) {
+    tabsHeaderRef.value.removeEventListener("scroll", onTabsHeaderScroll);
+  }
+});
 </script>
 
 <template>
   <div class="tabs">
-    <div class="tabs__header">
+    <div ref="tabsHeaderRef" class="tabs__header">
       <div
         v-for="item in tabs"
         :key="item.name"
@@ -80,13 +146,41 @@ function onTabLabelClick(name: TabPanelProps["name"]) {
 <style lang="scss" scoped>
 .tabs {
   &__header {
+    position: relative;
     display: flex;
     margin: 0 calc(var(--super-mini-gap) * -1) var(--mini-gap);
+    overflow-y: auto;
+    // 隐藏横向滚动条
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    &__mask-left {
+      mask-image: linear-gradient(to right, transparent, #000000 2rem);
+    }
+    &__mask-right {
+      mask-image: linear-gradient(
+        to right,
+        #000000 calc(100% - 2rem),
+        transparent
+      );
+    }
+    &__mask-both {
+      mask-image: linear-gradient(
+        to right,
+        transparent,
+        #000000 2rem,
+        #000000 calc(100% - 2rem),
+        transparent
+      );
+    }
     .tab-label {
       padding: 0 var(--super-mini-gap);
       color: var(--secondary-text-color);
       min-width: 2rem;
       cursor: pointer;
+      flex-shrink: 0;
 
       &::after {
         content: "";

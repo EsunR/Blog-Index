@@ -113,7 +113,7 @@ function onDrawerClick(e: Event) {
   &__close-btn {
     position: absolute;
     right: 1rem;
-    top: 1rem;
+    top: 1.1rem;
     font-size: 1.2rem;
   }
 
