@@ -59,15 +59,15 @@ function onTabsHeaderScroll() {
   // 按照当前的滚动状态为元素添加 mask
   const needMask = scrollLeft > 0 || scrollWidth > clientWidth;
   if (needMask) {
-    if (scrollLeft === 0) {
+    if (scrollLeft <= 0) {
       target.classList.add("tabs__header__mask-right");
       target.classList.remove(
         "tabs__header__mask-left",
         "tabs__header__mask-both"
       );
     } else if (
-      scrollLeft + clientWidth >= scrollWidth - 4 &&
-      scrollLeft + clientWidth <= scrollWidth + 4
+      scrollLeft + clientWidth >=
+      scrollWidth - 4 // 4 为误差值
     ) {
       target.classList.add("tabs__header__mask-left");
       target.classList.remove(
