@@ -90,6 +90,20 @@ function onTabsHeaderScroll() {
   }
 }
 
+function onMouseWheel(e: any) {
+  // 将鼠标的滚动事件转换为水平滚动
+  const target = tabsHeaderRef.value;
+  if (!target) {
+    return;
+  }
+  const delta = e.deltaY;
+  if (delta > 0) {
+    target.scrollLeft += 20;
+  } else {
+    target.scrollLeft -= 20;
+  }
+}
+
 watch(
   () => instance?.slots.default?.(),
   (newVal) => {
@@ -103,6 +117,7 @@ watch(
 
 onMounted(() => {
   if (tabsHeaderRef.value) {
+    tabsHeaderRef.value.addEventListener("mousewheel", onMouseWheel);
     tabsHeaderRef.value.addEventListener("scroll", onTabsHeaderScroll);
     nextTick(() => {
       onTabsHeaderScroll();
@@ -112,6 +127,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   if (tabsHeaderRef.value) {
+    tabsHeaderRef.value.removeEventListener("mousewheel", onMouseWheel);
     tabsHeaderRef.value.removeEventListener("scroll", onTabsHeaderScroll);
   }
 });
