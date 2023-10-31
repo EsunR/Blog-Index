@@ -104,6 +104,39 @@ function onMouseWheel(e: any) {
   }
 }
 
+function onTabsHeaderClick(e: Event) {
+  const tabEl = e.target as HTMLDivElement;
+  if (tabEl?.getAttribute("role") !== "tab") {
+    return;
+  }
+  // 点击中 tab 后，将其滚动到中间
+  const tabsHeaderEl = tabsHeaderRef.value;
+  if (!tabsHeaderEl) {
+    return;
+  }
+  const { scrollLeft, clientWidth: tabsHeaderClientWidth } = tabsHeaderEl;
+  const { offsetLeft: tabOffsetLeft, clientWidth: tabClientWidth } = tabEl;
+  // tabEl 距离滚动区域左侧边缘的距离
+  const tabElToLeftEdge = tabOffsetLeft - scrollLeft;
+  // tabEl 距离滚动区域右侧边缘的距离
+  const tabElToRightEdge =
+    tabsHeaderClientWidth - tabClientWidth - tabElToLeftEdge;
+  // 如果 tab 位于边缘则选中时自动向中间滚动一定距离
+  const judgeOffset = tabClientWidth / 2; // 判断是否需要滚动的偏移量
+  const autoOffset = Math.min(tabClientWidth / 2, tabsHeaderClientWidth / 6); // 自动滚动的偏移量
+  if (tabElToLeftEdge < judgeOffset) {
+    tabsHeaderEl.scrollTo({
+      left: tabOffsetLeft - autoOffset,
+      behavior: "smooth",
+    });
+  } else if (tabElToRightEdge < judgeOffset) {
+    tabsHeaderEl.scrollTo({
+      left: tabOffsetLeft - tabsHeaderClientWidth + tabClientWidth + autoOffset,
+      behavior: "smooth",
+    });
+  }
+}
+
 watch(
   () => instance?.slots.default?.(),
   (newVal) => {
@@ -135,7 +168,7 @@ onUnmounted(() => {
 
 <template>
   <div class="tabs">
-    <div ref="tabsHeaderRef" class="tabs__header">
+    <div ref="tabsHeaderRef" class="tabs__header" @click="onTabsHeaderClick">
       <div
         v-for="item in tabs"
         :key="item.name"
