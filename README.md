@@ -2,11 +2,11 @@
 
 Blog-Index 通用网站导航
 
-[CHANGELOG | 更新日志](./CHANGELOG.md)
-
 ![](https://img.shields.io/badge/Base-Vue3-brightgreen.svg)
 ![](https://img.shields.io/badge/Build-Vite-orange.svg)
 ![](https://img.shields.io/badge/Installer-Yarn-blue.svg)
+
+[预览链接](https://github.com/EsunR/Blog-Index/issues/53) | [友链交换区](https://github.com/EsunR/Blog-Index/issues/53) | [更新日志](./CHANGELOG.md)
 
 ![](./demo/show.png)
 
