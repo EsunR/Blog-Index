@@ -8,3 +8,7 @@ export function randomNum(minNum: number, maxNum: number) {
       return 0;
   }
 }
+
+export function isNode() {
+  return typeof window === "undefined";
+}

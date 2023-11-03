@@ -1,3 +1,4 @@
+import { isNode } from "@/utils";
 import { Ref, watch } from "vue";
 
 interface useMouseWheelOptions {
@@ -15,6 +16,9 @@ export function useMouseWheel({ onWheelUp, disable }: useMouseWheelOptions) {
   watch(
     disable,
     (newVal) => {
+      if (isNode()) {
+        return;
+      }
       if (newVal) {
         window.removeEventListener("wheel", onMouseWheel);
       } else {

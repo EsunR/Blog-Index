@@ -8,6 +8,6 @@ interface WebsiteItem {
   title: string;
   description?: string;
   url: string;
-  icon: string;
+  icon?: string;
   color?: string;
 }

@@ -2,6 +2,8 @@
 import GLOBAL_CONFIG from "@/config";
 import { randomNum } from "@/utils";
 import { onMounted, ref } from "vue";
+import LocalLogo from "@/assets/logo.svg";
+import { useHead } from "@unhead/vue";
 
 defineOptions({
   name: "CenterLogo",
@@ -18,6 +20,18 @@ const emit = defineEmits<{
 
 const bgLoaded = ref<boolean>(false);
 const slogan = ref<string>("");
+
+if (GLOBAL_CONFIG.LOGO_URL) {
+  useHead({
+    link: [
+      {
+        rel: "preload",
+        href: GLOBAL_CONFIG.LOGO_URL,
+        as: "image",
+      },
+    ],
+  });
+}
 
 /**
  * 加载背景图片
@@ -38,9 +52,13 @@ function goToBlog() {
   window.location.href = GLOBAL_CONFIG.BLOG_URL;
 }
 
-onMounted(() => {
+function randomSlogan() {
   const slogans = GLOBAL_CONFIG.SLOGANS;
   slogan.value = slogans[randomNum(0, slogans.length - 1)];
+}
+
+onMounted(() => {
+  randomSlogan();
   loadBackground();
 });
 </script>
@@ -54,7 +72,7 @@ onMounted(() => {
     <div class="inner" style="cursor: pointer" @click="goToBlog">
       <img
         :class="['main-logo', { 'main-logo-top': touchable }]"
-        src="@/assets/logo.svg"
+        :src="GLOBAL_CONFIG.LOGO_URL || LocalLogo"
       />
       <div :class="['hello', { hello_bottom: touchable }]">
         <div>{{ slogan }}</div>

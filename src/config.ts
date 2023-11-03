@@ -4,13 +4,7 @@ const WEBSITE_SORTS: WebsiteSort[] = [
   { id: 3, title: "示例分类3" },
   { id: 4, title: "示例分类4" },
   { id: 5, title: "示例分类5" },
-  { id: 6, title: "示例分类6" },
-  { id: 7, title: "示例分类7" },
-  { id: 8, title: "示例分类8" },
-  { id: 9, title: "示例分类9" },
-  { id: 10, title: "示例分类10" },
-  { id: 11, title: "示例分类11" },
-  { id: 12, title: "示例分类12" },
+  { id: 6, title: "友情链接" },
 ];
 
 const WEBSITE_ITEMS: WebsiteItem[] = [
@@ -29,11 +23,11 @@ const WEBSITE_ITEMS: WebsiteItem[] = [
     icon: "",
   },
   {
-    sortId: 2,
-    title: "主标题",
-    description: "网站描述",
-    url: "http://www.your-web-page.xyz/",
-    icon: "",
+    sortId: 6,
+    title: "EsunR Blog",
+    description: "EsunR 的博客",
+    url: "https://www.esunr.xyz",
+    icon: "https://esunr-image-bed.oss-cn-beijing.aliyuncs.com/logo.jpg",
   },
 ];
 
@@ -46,6 +40,10 @@ const GLOBAL_CONFIG = {
    * 个人博客链接
    */
   BLOG_URL: "https://blog.esunr.xyz",
+  /**
+   * 指定中心 LOGO 图片地址
+   */
+  LOGO_URL: null,
   /**
    * 个人 Github 链接
    */

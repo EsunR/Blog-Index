@@ -19,11 +19,16 @@ defineProps<{
     <div
       class="website-item__logo"
       :style="{
-        backgroundColor: item.color,
+        backgroundColor: item.color || (item.icon ? undefined : '#bcbcbc'),
       }"
     >
-      <img v-if="item.icon" :alt="item.title" />
-      <span v-else>{{ item.title.slice(0, 1) }}</span>
+      <img
+        v-if="item.icon"
+        class="site-logo"
+        :src="item.icon"
+        :alt="item.title"
+      />
+      <span v-else class="site-default-logo">{{ item.title.slice(0, 1) }}</span>
     </div>
   </a>
 </template>
@@ -86,10 +91,15 @@ $text-line-height: 1.4rem;
   &__logo {
     width: 3.5rem;
     height: 3.5rem;
-    background-color: #bcbcbc;
     border-radius: 100%;
     position: relative;
-    span {
+    .site-logo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 100%;
+    }
+    .site-default-logo {
       font-size: 2rem;
       color: #ffffff;
       position: absolute;

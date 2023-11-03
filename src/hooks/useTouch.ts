@@ -1,3 +1,4 @@
+import { isNode } from "@/utils";
 import { Ref, watch } from "vue";
 
 interface useTouchOptions {
@@ -35,6 +36,9 @@ export function useTouch({ onSlideUp, disable }: useTouchOptions) {
   watch(
     disable,
     (newVal) => {
+      if (isNode()) {
+        return;
+      }
       if (newVal) {
         window.removeEventListener("touchstart", onTouchStart);
         window.removeEventListener("touchend", onTouchEnd);

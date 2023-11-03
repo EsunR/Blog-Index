@@ -77,7 +77,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="website-drawer">
+  <section class="website-drawer">
     <!-- Drawer 打开开关 -->
     <div class="drawer-handler" @click="onDrawerHandlerClick">
       <span class="drawer-handler__icon">
@@ -113,7 +113,7 @@ onMounted(() => {
         </TabPanel>
       </Tabs>
     </Drawer>
-  </div>
+  </section>
 </template>
 
 <style lang="scss" scoped>
