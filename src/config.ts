@@ -23,6 +23,13 @@ const WEBSITE_ITEMS: WebsiteItem[] = [
     icon: "",
   },
   {
+    sortId: 1,
+    title: "主标题",
+    description: "网站描述",
+    url: "http://www.your-web-page.com/",
+    icon: "",
+  },
+  {
     sortId: 6,
     title: "EsunR Blog",
     description: "EsunR 的博客",

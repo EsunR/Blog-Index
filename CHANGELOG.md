@@ -8,6 +8,7 @@ feat:
 fix:
 
 - 修复为 Drawer 中的网站配置图标 url 后不显示的问题；
+- 修复 Drawer 内 Grid 布局错位的问题；
 
 ## 2023.11.1
 

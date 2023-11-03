@@ -160,24 +160,26 @@ onMounted(() => {
     }
     .tabs__content {
       height: 60vh;
-    }
-  }
 
-  .tab-panel {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: var(--mini-gap);
-    align-items: flex-start;
+      .tab-panel {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+        grid-gap: var(--mini-gap);
+        align-items: flex-start;
 
-    @media screen and (min-width: 768px) {
-      grid-template-columns: repeat(4, 1fr);
-    }
+        @media screen and (min-width: 768px) {
+          grid-template-columns: repeat(4, 1fr);
+        }
 
-    &.empty-panel {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--secondary-text-color);
+        &.empty-panel {
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--secondary-text-color);
+        }
+      }
     }
   }
 }

@@ -256,6 +256,7 @@ onUnmounted(() => {
     display: flex;
     transition: transform 0.4s ease;
     border-radius: var(--regular-border-radius);
+    align-items: flex-start;
   }
 }
 </style>

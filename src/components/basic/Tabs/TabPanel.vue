@@ -17,7 +17,7 @@ defineProps<TabPanelProps>();
 <style lang="scss" scoped>
 .tab-panel {
   width: 100%;
-  height: 100%;
+  max-height: 100%;
   overflow-y: auto;
   flex-shrink: 0;
   margin-right: var(--regular-gap);
