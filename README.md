@@ -69,7 +69,7 @@ yarn build
 
 # 3. 开发
 
-本地环境要求（可使用 volar 自动切换环境）：
+本地环境要求（可使用 [volta](https://blog.esunr.site/2023/07/d99593770741.html) 自动切换环境）：
 
 - node >= 18
 - yarn 1.22.19
