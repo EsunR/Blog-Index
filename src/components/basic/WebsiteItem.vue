@@ -4,7 +4,7 @@ defineOptions({
 });
 
 defineProps<{
-  item: WebsiteItem;
+  item: Omit<WebsiteItem, "sortId">;
 }>();
 </script>
 

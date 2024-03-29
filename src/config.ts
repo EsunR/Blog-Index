@@ -1,42 +1,55 @@
+/** Website 分类配置 */
 const WEBSITE_SORTS: WebsiteSort[] = [
-  { id: 1, title: "示例分类1" },
-  { id: 2, title: "示例分类2" },
-  { id: 3, title: "示例分类3" },
-  { id: 4, title: "示例分类4" },
-  { id: 5, title: "示例分类5" },
-  { id: 6, title: "友情链接" },
+  {
+    title: "示例分类1",
+    sites: [
+      {
+        title: "主标题",
+        url: "http://www.your-web-page.com/",
+        icon: "",
+        color: "#0171CD",
+      },
+      {
+        title: "主标题",
+        description: "网站描述",
+        url: "http://www.your-web-page.com/",
+        icon: "",
+      },
+      {
+        title: "主标题",
+        description: "网站描述",
+        url: "http://www.your-web-page.com/",
+        icon: "",
+      },
+    ],
+  },
+  {
+    title: "示例分类2",
+  },
+  {
+    title: "示例分类3",
+  },
+  {
+    title: "示例分类4",
+  },
+  {
+    title: "示例分类5",
+  },
+  {
+    title: "友情链接",
+    sites: [
+      {
+        title: "EsunR Blog",
+        description: "EsunR 的博客",
+        url: "https://www.esunr.xyz",
+        icon: "https://esunr-image-bed.oss-cn-beijing.aliyuncs.com/logo.jpg",
+      },
+    ],
+  },
 ];
 
-const WEBSITE_ITEMS: WebsiteItem[] = [
-  {
-    sortId: 1,
-    title: "主标题",
-    url: "http://www.your-web-page.com/",
-    icon: "",
-    color: "#0171CD",
-  },
-  {
-    sortId: 1,
-    title: "主标题",
-    description: "网站描述",
-    url: "http://www.your-web-page.com/",
-    icon: "",
-  },
-  {
-    sortId: 1,
-    title: "主标题",
-    description: "网站描述",
-    url: "http://www.your-web-page.com/",
-    icon: "",
-  },
-  {
-    sortId: 6,
-    title: "EsunR Blog",
-    description: "EsunR 的博客",
-    url: "https://www.esunr.xyz",
-    icon: "https://esunr-image-bed.oss-cn-beijing.aliyuncs.com/logo.jpg",
-  },
-];
+/** Website 配置（2023.3.29 已废弃） */
+const WEBSITE_ITEMS: WebsiteItem[] = [];
 
 const GLOBAL_CONFIG = {
   /**
@@ -80,11 +93,11 @@ const GLOBAL_CONFIG = {
     "马车越空，晃荡越响",
   ],
   /**
-   * 网站分类列表
+   * Website 分类配置
    */
   WEBSITE_SORTS,
   /**
-   * 网站分类列表
+   * Website 配置（2023.3.29 已废弃）
    */
   WEBSITE_ITEMS,
   /**

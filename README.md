@@ -36,6 +36,29 @@ Blog-Index 通用网站导航
 
 ![](https://esunr-image-bed.oss-cn-beijing.aliyuncs.com/picgo/202311031523211.png)
 
+Website 抽屉配置：
+
+```ts
+const WEBSITE_SORTS: WebsiteSort[] = [
+  {
+    title: "示例分类1",
+    sites: [
+      {
+        /** 网站标题 */
+        title: "主标题",
+        /** 网站 url */
+        url: "http://www.your-web-page.com/",
+        /** 网站 icon 图标，非必填，留空默认展示网站标题的第一个字符 */
+        icon: "",
+        /** 指定网站 icon 背景色 */
+        color: "#0171CD",
+      },
+    ],
+  },
+  // ... ...
+];
+```
+
 等待 Vercel 重新部署即可。
 
 ## 2.2 手动部署
@@ -57,7 +80,7 @@ yarn install
 
 ### 按需修改配置文件
 
-修改 src/config.ts 文件中的内容。
+修改 src/config.ts 文件中的内容，同上。
 
 ### 打包编译
 

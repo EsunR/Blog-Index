@@ -1,7 +1,14 @@
-interface WebsiteSort {
+type WebsiteSort = WebsiteSortOld | WebsiteSortNew;
+
+type WebsiteSortOld = {
   id: number;
   title: string;
-}
+};
+
+type WebsiteSortNew = {
+  title: string;
+  sites?: Omit<WebsiteItem, "sortId">[];
+};
 
 interface WebsiteItem {
   sortId: number;

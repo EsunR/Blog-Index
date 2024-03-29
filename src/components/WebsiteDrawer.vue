@@ -9,8 +9,9 @@ import { TabPanelProps } from "./basic/Tabs/types";
 import WebsiteItem from "./basic/WebsiteItem.vue";
 import useMouseWheel from "@/hooks/useMouseWheel";
 import useTouch from "@/hooks/useTouch";
+import { isWebsiteSortsOld } from "@/utils/typeDefender";
 
-type WebsiteConfig = WebsiteSort & { sites: WebsiteItem[] };
+type WebsiteConfig = WebsiteSortNew;
 
 defineOptions({
   name: "WebsiteDrawer",
@@ -25,18 +26,23 @@ const emit = defineEmits<{
 }>();
 
 const { modelValue } = toRefs(props);
-const activeTabs = ref<TabPanelProps["name"]>("");
+const activeTabs = ref<TabPanelProps["name"]>(0);
 const websiteSorts = ref<WebsiteSort[]>([]);
 const websiteItems = ref<WebsiteItem[]>([]);
 const disableUserActionInput = ref(false);
 
 const websiteConfig = computed<WebsiteConfig[]>(() => {
-  return websiteSorts.value.map((sort) => {
-    return {
-      ...sort,
-      sites: websiteItems.value.filter((item) => item.sortId === sort.id) || [],
-    };
-  });
+  if (isWebsiteSortsOld(websiteSorts.value, websiteItems.value)) {
+    return websiteSorts.value.map((sort) => {
+      return {
+        ...sort,
+        sites:
+          websiteItems.value.filter((item) => item.sortId === sort.id) || [],
+      };
+    });
+  } else {
+    return websiteSorts.value;
+  }
 });
 
 useMouseWheel({
@@ -72,7 +78,6 @@ watch(
 
 onMounted(() => {
   getWebsiteDrawerData();
-  activeTabs.value = websiteSorts.value[0].id;
 });
 </script>
 
@@ -94,18 +99,18 @@ onMounted(() => {
     >
       <Tabs v-model="activeTabs">
         <TabPanel
-          v-for="config in websiteConfig"
-          :key="config.id"
-          :name="config.id"
+          v-for="(config, index) in websiteConfig"
+          :key="index"
+          :name="index"
           :label="config.title"
           :class="{
-            'empty-panel': !config.sites.length,
+            'empty-panel': !config.sites?.length,
           }"
         >
-          <template v-if="config.sites.length">
+          <template v-if="config.sites?.length">
             <WebsiteItem
-              v-for="(website, index) in config.sites"
-              :key="index"
+              v-for="(website, subIndex) in config.sites"
+              :key="subIndex"
               :item="website"
             />
           </template>
