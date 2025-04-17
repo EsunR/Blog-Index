@@ -6,7 +6,7 @@ Blog-Index 通用网站导航
 ![](https://img.shields.io/badge/Build-Vite-orange.svg)
 ![](https://img.shields.io/badge/Installer-Yarn-blue.svg)
 
-[预览链接](https://blog-index.esunr.xyz) | [友链交换区](https://github.com/EsunR/Blog-Index/issues/53) | [更新日志](./CHANGELOG.md)
+[预览链接](https://blog-index.esunr.site) | [友链交换区](https://github.com/EsunR/Blog-Index/issues/53) | [更新日志](./CHANGELOG.md)
 
 ![](./demo/show.png)
 
@@ -28,7 +28,7 @@ Blog-Index 通用网站导航
 
 使用上面的一键部署后，Vercel 会默认为你创建一个新项目，而不是 fork 本项目，这会导致无法从 Github 上获取本项目的更新状态。你可以参考下面的教程手动 Fork 本项目，使用 Vercel 部署，并持续跟进本项目的更新。
 
-图文教程：[《使用 Vercel 全自动部署个人网站》](https://blog.esunr.xyz/2022/07/0cce6064286a.html)
+图文教程：[《使用 Vercel 全自动部署个人网站》](https://blog.esunr.site/2022/07/0cce6064286a.html)
 
 ### 修改配置
 
