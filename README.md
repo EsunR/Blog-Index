@@ -6,7 +6,7 @@ Blog-Index 通用网站导航
 ![](https://img.shields.io/badge/Build-Vite-orange.svg)
 ![](https://img.shields.io/badge/Installer-Yarn-blue.svg)
 
-[预览链接](https://blog-index.esunr.site) | [友链交换区](https://github.com/EsunR/Blog-Index/issues/53) | [更新日志](./CHANGELOG.md)
+[预览链接](https://www.esunr.site) | [友链交换区](https://github.com/EsunR/Blog-Index/issues/53) | [更新日志](./CHANGELOG.md)
 
 ![](./demo/show.png)
 
